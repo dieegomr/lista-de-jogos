@@ -1,3 +1,5 @@
+import GameList from './components/GameList';
+
 export default function App() {
   const game = {
     id: 540,
@@ -17,6 +19,7 @@ export default function App() {
   return (
     <div>
       <h1>Lista de Jogos</h1>
+      <GameList />
     </div>
   );
 }
