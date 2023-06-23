@@ -10,9 +10,3 @@
 .navBar h1 {
   margin-bottom: 1em;
 }
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
