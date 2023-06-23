@@ -1,19 +1,19 @@
 import styles from './Search.module.css';
 
 type SearchProps = {
-  query: string;
-  setQuery: React.Dispatch<React.SetStateAction<string>>;
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function Search({ query, setQuery }: SearchProps) {
+export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
   return (
     <input
       className={styles.search}
       type="text"
       placeholder="Busque por jogos..."
-      value={query}
+      value={searchQuery}
       onChange={(event) => {
-        setQuery(event.target.value);
+        setSearchQuery(event.target.value);
       }}
     />
   );

@@ -8,16 +8,16 @@ import Search from './components/Search';
 import Layout from './ui/Layout';
 
 export default function App() {
-  const [query, setQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <Layout>
       <NavBar>
         <Logo />
-        <Search query={query} setQuery={setQuery} />
+        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <Filter />
       </NavBar>
-      <GameList query={query} />
+      <GameList searchQuery={searchQuery} />
     </Layout>
   );
 }

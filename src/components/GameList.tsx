@@ -5,16 +5,16 @@ import ErrorMessage from './ErrorMessage';
 import { useGames } from '../hooks/useGames';
 
 type GameListProps = {
-  query: string;
+  searchQuery: string;
 };
 
-export default function GameList({ query }: GameListProps) {
+export default function GameList({ searchQuery }: GameListProps) {
   const { games, isLoading, error } = useGames();
 
   const searchedGames =
-    query.length > 0
+    searchQuery.length > 0
       ? games.filter((game) =>
-          `${game.title}`.toLowerCase().includes(query.toLowerCase())
+          `${game.title}`.toLowerCase().includes(searchQuery.toLowerCase())
         )
       : games;
 
