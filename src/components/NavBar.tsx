@@ -1,3 +1,4 @@
+import Filter from './Filter';
 import styles from './NavBar.module.css';
 
 export default function NavBar() {
@@ -9,6 +10,7 @@ export default function NavBar() {
         type="text"
         placeholder="Busque por jogos..."
       />
+      <Filter />
     </nav>
   );
 }
