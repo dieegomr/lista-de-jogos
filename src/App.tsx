@@ -17,7 +17,7 @@ export default function App() {
         <Search query={query} setQuery={setQuery} />
         <Filter />
       </NavBar>
-      <GameList />
+      <GameList query={query} />
     </Layout>
   );
 }
