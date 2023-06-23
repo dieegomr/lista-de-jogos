@@ -15,6 +15,7 @@ interface Game {
 }
 
 const BASE_URL = 'https://games-test-api-81e9fb0d564a.herokuapp.com/api';
+const TIME_OUT_IN_SECONDS = 5;
 
 export function useGames() {
   const [games, setGames] = useState<Game[]>([]);
@@ -22,16 +23,23 @@ export function useGames() {
   const [error, setError] = useState('');
 
   useEffect(function () {
+    const controller = new AbortController();
+
+    const id = setTimeout(() => controller.abort(), TIME_OUT_IN_SECONDS * 1000);
+
     async function fetchGames() {
       try {
         setIsLoading(true);
         setError('');
         const res = await fetch(`${BASE_URL}/data`, {
+          signal: controller.signal,
           method: 'GET',
           headers: {
             'dev-email-address': 'test@gmail.com',
           },
         });
+
+        clearTimeout(id);
 
         if (
           res.status === 500 ||
@@ -57,7 +65,9 @@ export function useGames() {
         setIsLoading(false);
       } catch (err: unknown) {
         if (err instanceof Error) {
-          setError(err.message);
+          err.name === 'AbortError'
+            ? setError('O servidor demorou para responder, tente mais tarde')
+            : setError(err.message);
         } else {
           setError(
             'O servidor não conseguirá responder por agora, tente voltar novamente mais tarde'
