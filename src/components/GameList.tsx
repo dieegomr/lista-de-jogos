@@ -7,13 +7,18 @@ import { useGames } from '../hooks/useGames';
 export default function GameList() {
   const { games, isLoading, error } = useGames();
 
+  if (error) return <ErrorMessage message={error} />;
+
+  if (isLoading) return <Loader />;
+
+  if (!games.length)
+    return <ErrorMessage message="Nenhum jogo encontrado 😕" />;
+
   return (
     <ul className={styles.list}>
-      {isLoading && !error && <Loader />}
-      {!isLoading &&
-        !error &&
-        games.map((game) => <GameItem game={game} key={game.id} />)}
-      {error && <ErrorMessage message={error} />}
+      {games.map((game) => (
+        <GameItem game={game} key={game.id} />
+      ))}
     </ul>
   );
 }
