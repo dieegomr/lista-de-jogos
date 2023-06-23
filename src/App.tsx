@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Filter from './components/Filter';
 import GameList from './components/GameList';
 import Logo from './components/Logo';
@@ -6,11 +8,13 @@ import Search from './components/Search';
 import Layout from './ui/Layout';
 
 export default function App() {
+  const [query, setQuery] = useState('');
+
   return (
     <Layout>
       <NavBar>
         <Logo />
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <Filter />
       </NavBar>
       <GameList />

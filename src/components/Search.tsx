@@ -1,10 +1,11 @@
-import { useState } from 'react';
 import styles from './Search.module.css';
 
-export default function Search() {
-  const [query, setQuery] = useState('');
-  console.log(query);
+type SearchProps = {
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+};
 
+export default function Search({ query, setQuery }: SearchProps) {
   return (
     <input
       className={styles.search}
