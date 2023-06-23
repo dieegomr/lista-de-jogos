@@ -1,0 +1,29 @@
+.game {
+  box-shadow: 0 0 10px 5px lightgrey;
+  border-radius: 0.2rem;
+  min-width: 21rem;
+  display: flex;
+}
+
+.game .img {
+  width: 10rem;
+  height: 15rem;
+  object-fit: fill;
+}
+
+.game .body {
+  margin: 1rem;
+}
+.game .title {
+  line-height: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.game .description {
+  line-height: 1.2rem;
+}
+
+.game .genre {
+  font-size: 1.4rem;
+  margin-top: 0.6rem;
+}
