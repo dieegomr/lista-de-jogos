@@ -21,7 +21,11 @@ export default function GameItem({ game }: Props) {
 
   return (
     <div className={styles.game}>
-      <img src={thumbnail} className={styles.img} />
+      <img
+        src={thumbnail}
+        alt={`cartaz do jogo ${title}`}
+        className={styles.img}
+      />
       <div className={styles.body}>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.description}>{description}</p>
