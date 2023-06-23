@@ -1,14 +1,9 @@
-import Filter from './Filter';
-import Logo from './Logo';
 import styles from './NavBar.module.css';
-import Search from './Search';
 
-export default function NavBar() {
-  return (
-    <nav className={styles.navBar}>
-      <Logo />
-      <Search />
-      <Filter />
-    </nav>
-  );
+interface Props {
+  children?: React.ReactNode;
+}
+
+export default function NavBar({ children }: Props) {
+  return <nav className={styles.navBar}>{children}</nav>;
 }
