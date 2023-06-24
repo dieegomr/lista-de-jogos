@@ -2,7 +2,7 @@ import GameItem from './GameItem';
 import styles from './GameList.module.css';
 import ErrorMessage from './ErrorMessage';
 import { GameListProps } from '../types/GameListProps';
-import { filterGamesByGenre } from '../utils/helpers';
+import { filterGamesByGenre, searchGamesByQuery } from '../utils/helpers';
 
 export default function GameList({
   searchQuery,
@@ -11,12 +11,7 @@ export default function GameList({
 }: GameListProps) {
   const filteredGames = filterGamesByGenre(games, selectedGenre);
 
-  const searchedGames =
-    searchQuery.length > 0
-      ? filteredGames.filter((game) =>
-          `${game.title}`.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      : filteredGames;
+  const searchedGames = searchGamesByQuery(filteredGames, searchQuery);
 
   if (!searchedGames.length)
     return <ErrorMessage message="Nenhum jogo encontrado 😕" />;

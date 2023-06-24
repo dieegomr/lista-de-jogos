@@ -19,3 +19,11 @@ export function getArrayOfUniqueGenres(games: Game[]): string[] {
 export function filterGamesByGenre(games: Game[], genre: string): Game[] | [] {
   return genre !== 'All' ? games.filter((game) => game.genre === genre) : games;
 }
+
+export function searchGamesByQuery(games: Game[], query: string): Game[] | [] {
+  return query.length > 0
+    ? games.filter((game) =>
+        `${game.title}`.toLowerCase().includes(query.toLowerCase())
+      )
+    : games;
+}
