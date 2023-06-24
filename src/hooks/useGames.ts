@@ -1,21 +1,14 @@
 import { useEffect, useState } from 'react';
 import { startFetchTimeout } from '../utils/helpers';
-
-interface Game {
-  id: number;
-  title: string;
-  thumbnail: string;
-  short_description: string;
-  game_url: string;
-  genre: string;
-  platform: string;
-  publisher: string;
-  developer: string;
-  release_date: string;
-  freetogame_profile_url: string;
-}
+import { Game } from '../types/Game';
 
 const BASE_URL = 'https://games-test-api-81e9fb0d564a.herokuapp.com/api';
+const SPECIFIC_STATUS_ERROR_MESSAGE =
+  'O servidor falhou em responder, tente recarregar a página';
+const OTHER_STATUS_ERROR_MESSAGE =
+  'O servidor não conseguirá responder por agora, tente voltar novamente mais tarde';
+const FETCH_TIMEOUT_ERROR_MESSAGE =
+  'O servidor demorou para responder, tente mais tarde';
 
 export function useGames() {
   const [games, setGames] = useState<Game[]>([]);
@@ -48,28 +41,21 @@ export function useGames() {
           res.status === 508 ||
           res.status === 509
         )
-          throw new Error(
-            'O servidor falhou em responder, tente recarregar a página'
-          );
+          throw new Error(SPECIFIC_STATUS_ERROR_MESSAGE);
 
-        if (!res.ok)
-          throw new Error(
-            'O servidor não conseguirá responder por agora, tente voltar novamente mais tarde'
-          );
+        if (!res.ok) throw new Error(OTHER_STATUS_ERROR_MESSAGE);
 
         const data = await res.json();
-        console.log(data);
+
         setGames(data);
         setIsLoading(false);
       } catch (err: unknown) {
         if (err instanceof Error) {
           err.name === 'AbortError'
-            ? setError('O servidor demorou para responder, tente mais tarde')
+            ? setError(FETCH_TIMEOUT_ERROR_MESSAGE)
             : setError(err.message);
         } else {
-          setError(
-            'O servidor não conseguirá responder por agora, tente voltar novamente mais tarde'
-          );
+          setError(OTHER_STATUS_ERROR_MESSAGE);
         }
       } finally {
         setIsLoading(false);
