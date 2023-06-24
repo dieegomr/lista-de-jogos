@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './Filter.module.css';
 
 type Game = {
@@ -19,17 +20,19 @@ type FilterProps = {
 };
 
 export default function Filter({ games }: FilterProps) {
+  const [selectedGenre, setSelectedGenre] = useState('All');
+
   const genresArray = games
     ? ['All', ...new Set(games.map((game) => game.genre))]
     : ['All'];
 
   return (
-    <select name="genre" className={styles.genre}>
-      {/* <option value="all">All</option>
-      <option value="shooter">shooter</option>
-      <option value="arpg">arpg</option>
-      <option value="fighting">fighting</option>
-      <option value="action">Action</option> */}
+    <select
+      name="genre"
+      value={selectedGenre}
+      className={styles.genre}
+      onChange={(event) => setSelectedGenre(event.target.value)}
+    >
       {genresArray.map((genre) => (
         <option value={genre} key={genre}>
           {genre}
