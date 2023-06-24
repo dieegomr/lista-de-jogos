@@ -1,4 +1,5 @@
 import { Game } from '../types/Game';
+import { StartFetchTimeout } from '../types/StartFetchTimeout';
 
 export function startFetchTimeout(
   durationInSeconds: number
