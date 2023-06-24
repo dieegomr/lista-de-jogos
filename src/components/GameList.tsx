@@ -2,16 +2,14 @@ import GameItem from './GameItem';
 import styles from './GameList.module.css';
 import ErrorMessage from './ErrorMessage';
 import { GameListProps } from '../types/GameListProps';
+import { filterGamesByGenre } from '../utils/helpers';
 
 export default function GameList({
   searchQuery,
   selectedGenre,
   games,
 }: GameListProps) {
-  const filteredGames =
-    selectedGenre !== 'All'
-      ? games.filter((game) => game.genre === selectedGenre)
-      : games;
+  const filteredGames = filterGamesByGenre(games, selectedGenre);
 
   const searchedGames =
     searchQuery.length > 0

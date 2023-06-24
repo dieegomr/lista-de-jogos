@@ -15,3 +15,7 @@ export function startFetchTimeout(
 export function getArrayOfUniqueGenres(games: Game[]): string[] {
   return games ? [...new Set(games.map((game) => game.genre))] : [];
 }
+
+export function filterGamesByGenre(games: Game[], genre: string): Game[] | [] {
+  return genre !== 'All' ? games.filter((game) => game.genre === genre) : games;
+}
