@@ -1,6 +1,5 @@
 import GameItem from './GameItem';
 import styles from './GameList.module.css';
-import Loader from './Loader';
 import ErrorMessage from './ErrorMessage';
 
 type Game = {
@@ -20,20 +19,14 @@ type Game = {
 type GameListProps = {
   searchQuery: string;
   selectedGenre: string;
-  gamesObj: {
-    games: Game[];
-    error: string;
-    isLoading: boolean;
-  };
+  games: Game[];
 };
 
 export default function GameList({
   searchQuery,
   selectedGenre,
-  gamesObj,
+  games,
 }: GameListProps) {
-  const { games, error, isLoading } = gamesObj;
-
   const filteredGames =
     selectedGenre !== 'All'
       ? games.filter((game) => game.genre === selectedGenre)
@@ -45,10 +38,6 @@ export default function GameList({
           `${game.title}`.toLowerCase().includes(searchQuery.toLowerCase())
         )
       : filteredGames;
-
-  if (error) return <ErrorMessage message={error} />;
-
-  if (isLoading) return <Loader />;
 
   if (!searchedGames.length)
     return <ErrorMessage message="Nenhum jogo encontrado 😕" />;

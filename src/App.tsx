@@ -7,18 +7,15 @@ import NavBar from './components/NavBar';
 import Search from './components/Search';
 import Layout from './ui/Layout';
 import { useGames } from './hooks/useGames';
+import Main from './components/Main';
+import Loader from './components/Loader';
+import ErrorMessage from './components/ErrorMessage';
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('All');
 
   const { games, isLoading, error } = useGames();
-
-  const gamesObj = {
-    games,
-    isLoading,
-    error,
-  };
 
   return (
     <Layout>
@@ -31,11 +28,17 @@ export default function App() {
           setSelectedGenre={setSelectedGenre}
         />
       </NavBar>
-      <GameList
-        searchQuery={searchQuery}
-        selectedGenre={selectedGenre}
-        gamesObj={gamesObj}
-      />
+      <Main>
+        {isLoading && !error && <Loader />}
+        {error && !isLoading && <ErrorMessage message={error} />}
+        {!isLoading && !error && (
+          <GameList
+            searchQuery={searchQuery}
+            selectedGenre={selectedGenre}
+            games={games}
+          />
+        )}
+      </Main>
     </Layout>
   );
 }
