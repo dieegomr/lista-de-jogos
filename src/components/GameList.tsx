@@ -1,26 +1,7 @@
 import GameItem from './GameItem';
 import styles from './GameList.module.css';
 import ErrorMessage from './ErrorMessage';
-
-type Game = {
-  id: number;
-  title: string;
-  thumbnail: string;
-  short_description: string;
-  game_url: string;
-  genre: string;
-  platform: string;
-  publisher: string;
-  developer: string;
-  release_date: string;
-  freetogame_profile_url: string;
-};
-
-type GameListProps = {
-  searchQuery: string;
-  selectedGenre: string;
-  games: Game[];
-};
+import { GameListProps } from '../types/GameListProps';
 
 export default function GameList({
   searchQuery,

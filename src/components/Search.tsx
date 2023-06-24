@@ -1,9 +1,5 @@
+import { SearchProps } from '../types/SearchProps';
 import styles from './Search.module.css';
-
-type SearchProps = {
-  searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
-};
 
 export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
   return (

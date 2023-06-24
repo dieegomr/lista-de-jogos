@@ -1,22 +1,7 @@
+import { GameItemProps } from '../types/GameItemProps';
 import styles from './GameItem.module.css';
 
-interface Props {
-  game: {
-    id: number;
-    title: string;
-    thumbnail: string;
-    short_description: string;
-    game_url: string;
-    genre: string;
-    platform: string;
-    publisher: string;
-    developer: string;
-    release_date: string;
-    freetogame_profile_url: string;
-  };
-}
-
-export default function GameItem({ game }: Props) {
+export default function GameItem({ game }: GameItemProps) {
   const { thumbnail, title, short_description: description, genre } = game;
 
   return (

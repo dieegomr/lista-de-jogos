@@ -1,9 +1,6 @@
+import { NavBarProps } from '../types/NavBarProps';
 import styles from './NavBar.module.css';
 
-interface Props {
-  children?: React.ReactNode;
-}
-
-export default function NavBar({ children }: Props) {
+export default function NavBar({ children }: NavBarProps) {
   return <nav className={styles.navBar}>{children}</nav>;
 }
