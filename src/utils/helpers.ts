@@ -1,10 +1,5 @@
 import { Game } from '../types/Game';
 
-type StartFetchTimeout = {
-  fetchTimeoutId: number;
-  controller: AbortController;
-};
-
 export function startFetchTimeout(
   durationInSeconds: number
 ): StartFetchTimeout {
