@@ -20,7 +20,7 @@ export default function GameItem({ game }: Props) {
   const { thumbnail, title, short_description: description, genre } = game;
 
   return (
-    <div className={styles.game}>
+    <li className={styles.game}>
       <img
         src={thumbnail}
         alt={`cartaz do jogo ${title}`}
@@ -31,6 +31,6 @@ export default function GameItem({ game }: Props) {
         <p className={styles.description}>{description}</p>
         <h3 className={styles.genre}>{genre}</h3>
       </div>
-    </div>
+    </li>
   );
 }
