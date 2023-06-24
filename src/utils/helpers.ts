@@ -27,3 +27,15 @@ export function searchGamesByQuery(games: Game[], query: string): Game[] | [] {
       )
     : games;
 }
+
+export function isSpecificHttpStatus(response: Response): boolean {
+  return (
+    response.status === 500 ||
+    response.status === 502 ||
+    response.status === 503 ||
+    response.status === 504 ||
+    response.status === 507 ||
+    response.status === 508 ||
+    response.status === 509
+  );
+}

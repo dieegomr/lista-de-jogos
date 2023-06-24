@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { startFetchTimeout } from '../utils/helpers';
+import { isSpecificHttpStatus, startFetchTimeout } from '../utils/helpers';
 import { Game } from '../types/Game';
 
 const BASE_URL = 'https://games-test-api-81e9fb0d564a.herokuapp.com/api';
@@ -32,15 +32,7 @@ export function useGames() {
 
         clearTimeout(fetchTimeoutId);
 
-        if (
-          res.status === 500 ||
-          res.status === 502 ||
-          res.status === 503 ||
-          res.status === 504 ||
-          res.status === 507 ||
-          res.status === 508 ||
-          res.status === 509
-        )
+        if (isSpecificHttpStatus(res))
           throw new Error(SPECIFIC_STATUS_ERROR_MESSAGE);
 
         if (!res.ok) throw new Error(OTHER_STATUS_ERROR_MESSAGE);
