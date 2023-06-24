@@ -6,9 +6,13 @@ import { useGames } from '../hooks/useGames';
 
 type GameListProps = {
   searchQuery: string;
+  selectedGenre: string;
 };
 
-export default function GameList({ searchQuery }: GameListProps) {
+export default function GameList({
+  searchQuery,
+  selectedGenre,
+}: GameListProps) {
   const { games, isLoading, error } = useGames();
 
   const searchedGames =

@@ -151,15 +151,20 @@ export default function App() {
   ];
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedGenre, setSelectedGenre] = useState('All');
 
   return (
     <Layout>
       <NavBar>
         <Logo />
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <Filter games={games} />
+        <Filter
+          games={games}
+          selectedGenre={selectedGenre}
+          setSelectedGenre={setSelectedGenre}
+        />
       </NavBar>
-      <GameList searchQuery={searchQuery} />
+      <GameList searchQuery={searchQuery} selectedGenre={selectedGenre} />
     </Layout>
   );
 }

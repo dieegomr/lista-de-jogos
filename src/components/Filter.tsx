@@ -17,11 +17,15 @@ type Game = {
 
 type FilterProps = {
   games: Game[];
+  selectedGenre: string;
+  setSelectedGenre: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function Filter({ games }: FilterProps) {
-  const [selectedGenre, setSelectedGenre] = useState('All');
-
+export default function Filter({
+  games,
+  selectedGenre,
+  setSelectedGenre,
+}: FilterProps) {
   const genresArray = games
     ? ['All', ...new Set(games.map((game) => game.genre))]
     : ['All'];
