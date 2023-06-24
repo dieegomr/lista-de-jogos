@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { startFetchTimeout } from '../utils/helpers';
 
 interface Game {
   id: number;
@@ -15,7 +16,6 @@ interface Game {
 }
 
 const BASE_URL = 'https://games-test-api-81e9fb0d564a.herokuapp.com/api';
-const TIME_OUT_IN_SECONDS = 5;
 
 export function useGames() {
   const [games, setGames] = useState<Game[]>([]);
@@ -23,9 +23,7 @@ export function useGames() {
   const [error, setError] = useState('');
 
   useEffect(function () {
-    const controller = new AbortController();
-
-    const id = setTimeout(() => controller.abort(), TIME_OUT_IN_SECONDS * 1000);
+    const { fetchTimeoutId, controller } = startFetchTimeout(5);
 
     async function fetchGames() {
       try {
@@ -39,7 +37,7 @@ export function useGames() {
           },
         });
 
-        clearTimeout(id);
+        clearTimeout(fetchTimeoutId);
 
         if (
           res.status === 500 ||
