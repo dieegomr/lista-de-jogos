@@ -7,9 +7,9 @@ import Search from './components/Search';
 import Layout from './ui/Layout';
 import { useGames } from './hooks/useGames';
 import Main from './components/Main';
-import Loader from './components/Loader';
 import ErrorMessage from './components/ErrorMessage';
 import GenreSelector from './components/GenreSelector';
+import Loader from './ui/Loader';
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
