@@ -11,10 +11,10 @@ export default function GameItem({ game }: GameItemProps) {
         alt={`cartaz do jogo ${title}`}
         className={styles.img}
       />
+      <h3 className={styles.genre}>{genre}</h3>
       <div className={styles.body}>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.description}>{description}</p>
-        <h3 className={styles.genre}>{genre}</h3>
       </div>
     </li>
   );
