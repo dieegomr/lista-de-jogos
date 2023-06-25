@@ -44,9 +44,3 @@
   align-self: flex-end;
   font-size: 0.8rem;
 }
-
-@media screen and (min-width: 480px) {
-  .game {
-    max-height: 25rem;
-  }
-}
