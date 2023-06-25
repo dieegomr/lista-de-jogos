@@ -1,8 +1,8 @@
 .tabsContainer {
   font-family: 'Roboto', sans-serif;
-  background: #000;
+  background: var(--color-dark);
   max-width: 21rem;
-  margin: 0.3rem auto;
+  margin: 0.5rem auto;
   border-radius: 0.7rem;
   overflow: hidden;
   position: relative;
@@ -13,7 +13,7 @@
   height: 2rem;
   padding: 0.4rem;
   cursor: pointer;
-  color: #fff;
+  color: var(--color-light);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -36,9 +36,11 @@
 }
 
 .tabsContainer a {
-  color: white;
+  font-family: 'Ysabeau SC', sans-serif;
+  font-size: 0.8rem;
+  color: var(--color-darkest);
   text-decoration: none;
-  background: #333;
+  background: var(--color-medium);
   padding: 0.5rem 1rem;
   display: inline-block;
   border-radius: 0.3rem;
@@ -47,7 +49,7 @@
 }
 
 .tabsContainer a.active {
-  background: white;
+  background: var(--color-theme);
   color: black;
 }
 
@@ -63,17 +65,17 @@
 
 .tabsContainer .rightArrow {
   right: 0;
-  background: linear-gradient(to left, #000 50%, transparent);
+  background: linear-gradient(to left, var(--color-dark) 30%, transparent);
   display: flex;
   justify-content: flex-end;
   padding: 0 0.2rem;
 }
 
 .tabsContainer .leftArrow {
-  background: linear-gradient(to right, #000 50%, transparent);
+  background: linear-gradient(to right, var(--color-dark) 30%, transparent);
   padding: 0 0.2rem;
 }
 
 .tabsContainer .arrow:hover {
-  background: #333;
+  color: var(--color-medium);
 }

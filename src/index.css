@@ -1,5 +1,25 @@
+@import url('https://fonts.cdnfonts.com/css/games');
+@import url('https://fonts.cdnfonts.com/css/neonrec');
+@import url('https://fonts.cdnfonts.com/css/bonus-giant');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&family=Ysabeau+SC:wght@300&display=swap');
+
+:root {
+  --color-darkest: #343a40;
+  --color-dark: #495057;
+  --color-medium: #ced4da;
+  --color-light: #f1f3f5;
+
+  --color-theme: #1098ad;
+  --color-accent: #ffa94d;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  color: var(--color-light);
+  background-color: var(--color-darkest);
 }

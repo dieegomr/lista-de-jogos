@@ -1,11 +1,15 @@
 .search {
-  padding: 1.1rem 1.6rem;
-  font-size: 1.3rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
   border-radius: 0.7rem;
-  margin-bottom: 1rem;
+  border: none;
+  margin-bottom: 0.5rem;
   width: 15rem;
   transition: all 0.3s;
-  color: black;
+  color: var(--color-darkest);
+  background: var(--color-medium);
 }
 
 .search::placeholder {

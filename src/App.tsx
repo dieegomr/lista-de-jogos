@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import Filter from './components/Filter';
 import GameList from './components/GameList';
 import Logo from './components/Logo';
 import NavBar from './components/NavBar';
