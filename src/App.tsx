@@ -22,12 +22,14 @@ export default function App() {
       <NavBar>
         <Logo />
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      </NavBar>
+      <section>
         <GenreSelector
           games={games}
           selectedGenre={selectedGenre}
           setSelectedGenre={setSelectedGenre}
         />
-      </NavBar>
+      </section>
       <Main>
         {isLoading && !error && <Loader />}
         {error && !isLoading && <ErrorMessage message={error} />}
