@@ -31,6 +31,10 @@
   scroll-behavior: smooth;
 }
 
+.center {
+  justify-content: center;
+}
+
 .tabsContainer ul::-webkit-scrollbar {
   display: none;
 }

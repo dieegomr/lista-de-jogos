@@ -25,7 +25,7 @@ export default function GenreSelector({
       <div className={styles.leftArrow} onClick={handleSlideLeft}>
         <div className={styles.arrow}>&lt;</div>
       </div>
-      <ul id="slider">
+      <ul id="slider" className={games.length <= 3 ? `${styles.center}` : ''}>
         {uniqueGenresArray.map((genre) => (
           <a
             href="#"
