@@ -8,3 +8,16 @@
 .navBar h1 {
   margin-bottom: 0.5em;
 }
+
+@media screen and (min-width: 480px) {
+  .navBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin: 1rem 0 0.5rem 0;
+  }
+  .navBar h1 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+}

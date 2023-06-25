@@ -83,3 +83,9 @@
 .tabsContainer .arrow:hover {
   color: var(--color-medium);
 }
+
+@media screen and (min-width: 480px) {
+  .tabsContainer a {
+    font-size: 1rem;
+  }
+}

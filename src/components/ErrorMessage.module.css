@@ -3,7 +3,7 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 200;
   text-align: center;
-  margin: 1rem 3rem;
+  margin: 4rem 3rem;
   height: 22rem;
 }
 
@@ -13,4 +13,10 @@
   align-items: center;
   font-size: 1.5rem;
   color: var(--color-accent);
+}
+
+@media screen and (min-width: 480px) {
+  .error {
+    margin: 7rem 7rem;
+  }
 }
