@@ -5,6 +5,7 @@ export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
   return (
     <div className={styles.searchContainer}>
       <input
+        id="search"
         className={styles.search}
         type="text"
         placeholder="Busque por jogos..."
