@@ -1,0 +1,79 @@
+.tabsContainer {
+  font-family: 'Roboto', sans-serif;
+  background: #000;
+  max-width: 21rem;
+  margin: 0.3rem auto;
+  border-radius: 0.7rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.tabsContainer .arrow {
+  width: 2rem;
+  height: 2rem;
+  padding: 0.4rem;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  user-select: none;
+}
+
+.tabsContainer ul {
+  display: flex;
+  gap: 0.7rem;
+  padding: 0.5rem 2.5rem;
+  margin: 0.4rem;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.tabsContainer ul::-webkit-scrollbar {
+  display: none;
+}
+
+.tabsContainer a {
+  color: white;
+  text-decoration: none;
+  background: #333;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  border-radius: 0.3rem;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.tabsContainer a.active {
+  background: white;
+  color: black;
+}
+
+.tabsContainer .rightArrow,
+.tabsContainer .leftArrow {
+  position: absolute;
+  height: 100%;
+  width: 3rem;
+  top: 0;
+  display: flex;
+  align-items: center;
+}
+
+.tabsContainer .rightArrow {
+  right: 0;
+  background: linear-gradient(to left, #000 50%, transparent);
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 0.2rem;
+}
+
+.tabsContainer .leftArrow {
+  background: linear-gradient(to right, #000 50%, transparent);
+  padding: 0 0.2rem;
+}
+
+.tabsContainer .arrow:hover {
+  background: #333;
+}

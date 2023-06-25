@@ -10,6 +10,7 @@ import { useGames } from './hooks/useGames';
 import Main from './components/Main';
 import Loader from './components/Loader';
 import ErrorMessage from './components/ErrorMessage';
+import GenreSelector from './components/GenreSelector';
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,7 +23,7 @@ export default function App() {
       <NavBar>
         <Logo />
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <Filter
+        <GenreSelector
           games={games}
           selectedGenre={selectedGenre}
           setSelectedGenre={setSelectedGenre}
