@@ -28,7 +28,7 @@ Este é um projeto React desenvolvido como parte do desafio técnico para um car
 <h3>Versões mobile e tablet</h3>
 <div style="display: flex; flex-direction: row;">
 <img src="mobile.png" alt="project screenshot" width="250" height="400">
-<img src="tablet.png" alt="project screenshot" width="600" height="400">
+<img src="tablet.png" alt="project screenshot" width="500" height="400">
 </div>
 
 <h3>Versão pc</h3>
@@ -36,7 +36,7 @@ Este é um projeto React desenvolvido como parte do desafio técnico para um car
 
 <h3 >Como rodar esta aplicação no seu computador?</h3>
 
-<p>Certifique-se de ter o Node.js instalado em seu sistema. Você pode baixá-lo em https://nodejs.org.<p>
+<p>Obs.: Certifique-se de ter o Node.js instalado em seu sistema. <p>
 
 <p>1) Clone o repositório https://github.com/dieegomr/lista-de-jogos.git</p>
 <p>2) Abra um terminal na pasta do projeto</p>
