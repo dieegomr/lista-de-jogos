@@ -4,6 +4,17 @@
 Este é um projeto React desenvolvido como parte do desafio técnico para um cargo de Estágio.
 </p>
 
+<p>Teste o site <a href="https://lista-de-jogos-rho.vercel.app" target="_blank">aqui</a>.</p>
+
+<h2>Imagens do projeto:</h2>
+
+<h3>Versões mobile e tablet</h3>
+<div style="display: flex; flex-direction: row;">
+<img src="mobile.png" alt="project screenshot" width="250" height="400">
+<img src="tablet.png" alt="project screenshot" width="500" height="400">
+</div>
+<img src="pc.png" alt="project screenshot" width="800" height="400">
+
 <h2>Requisitos Funcionais:</h2>
 
 <ul>
@@ -23,16 +34,7 @@ Este é um projeto React desenvolvido como parte do desafio técnico para um car
 <li>Uma vez que tenha os dados em mãos, veja quais `genre` foram retornados e permita ao usuário selecionar um deles, e então filtre para exibir apenas jogos do gênero selecionado ✅</li>
 </ul>
 
-<h2>Imagens do projeto:</h2>
-
-<h3>Versões mobile e tablet</h3>
-<div style="display: flex; flex-direction: row;">
-<img src="mobile.png" alt="project screenshot" width="250" height="400">
-<img src="tablet.png" alt="project screenshot" width="500" height="400">
-</div>
-
 <h3>Versão pc</h3>
-<img src="pc.png" alt="project screenshot" width="1000" height="400">
 
 <h3 >Como rodar esta aplicação no seu computador?</h3>
 
