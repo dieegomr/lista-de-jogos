@@ -1,13 +1,15 @@
+import { useGames } from '../contexts/gameContext/hook';
 import { useSlider } from '../hooks/useSlider';
 import { FilterProps } from '../types/FilterProps';
 import { getArrayOfUniqueGenres } from '../utils/helpers';
 import styles from './GenreSelector.module.css';
 
 export default function GenreSelector({
-  games,
   selectedGenre,
   setSelectedGenre,
 }: FilterProps) {
+  const { games } = useGames();
+
   const allGenresArray = getArrayOfUniqueGenres(games);
   const uniqueGenresArray = ['All', ...allGenresArray];
 

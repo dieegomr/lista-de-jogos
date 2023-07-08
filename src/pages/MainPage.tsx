@@ -5,7 +5,6 @@ import Main from '../components/Main';
 import NavBar from '../components/NavBar';
 import Search from '../components/Search';
 import styles from './MainPage.module.css';
-import { useGames } from '../hooks/useGames';
 
 interface MainPageProps {
   searchQuery: string;
@@ -20,8 +19,6 @@ export default function MainPage({
   selectedGenre,
   setSelectedGenre,
 }: MainPageProps) {
-  const { games } = useGames();
-
   return (
     <div className={styles.app}>
       <NavBar>
@@ -29,7 +26,6 @@ export default function MainPage({
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       </NavBar>
       <GenreSelector
-        games={games}
         selectedGenre={selectedGenre}
         setSelectedGenre={setSelectedGenre}
       />
