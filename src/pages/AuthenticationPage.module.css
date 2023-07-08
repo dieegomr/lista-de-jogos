@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  padding: 5rem 1rem;
+  justify-content: center;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem auto;
+  padding: 4rem 0;
+  width: 100%;
+  max-width: 30rem;
+  background: var(--color-medium);
+  color: var(--color-dark);
+  border-radius: 0.5rem;
+  gap: 1rem;
+}
+
+.login h1 {
+  align-self: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.login h2 {
+  align-self: center;
+  margin-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  min-width: 15rem;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.actions .btn {
+  width: 50%;
+}
