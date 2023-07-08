@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef } from 'react';
+import { useSlider } from '../hooks/useSlider';
 import { FilterProps } from '../types/FilterProps';
 import { getArrayOfUniqueGenres } from '../utils/helpers';
 import styles from './GenreSelector.module.css';
@@ -10,16 +10,8 @@ export default function GenreSelector({
 }: FilterProps) {
   const allGenresArray = getArrayOfUniqueGenres(games);
   const uniqueGenresArray = ['All', ...allGenresArray];
-  const sliderRef = useRef() as MutableRefObject<HTMLUListElement>;
 
-  function handleSlideLeft() {
-    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft - 200;
-  }
-
-  function handleSlideRight() {
-    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft + 200;
-    console.log(sliderRef.current.scrollLeft);
-  }
+  const { handleSlideLeft, handleSlideRight, sliderRef } = useSlider();
 
   return (
     <div className={styles.tabsContainer}>
