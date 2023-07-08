@@ -1,3 +1,4 @@
+import { MutableRefObject, useRef } from 'react';
 import { FilterProps } from '../types/FilterProps';
 import { getArrayOfUniqueGenres } from '../utils/helpers';
 import styles from './GenreSelector.module.css';
@@ -9,15 +10,15 @@ export default function GenreSelector({
 }: FilterProps) {
   const allGenresArray = getArrayOfUniqueGenres(games);
   const uniqueGenresArray = ['All', ...allGenresArray];
-  const slider = document.getElementById('slider') as HTMLElement;
+  const sliderRef = useRef() as MutableRefObject<HTMLUListElement>;
 
   function handleSlideLeft() {
-    slider.scrollLeft = slider.scrollLeft - 200;
+    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft - 200;
   }
 
   function handleSlideRight() {
-    slider.scrollLeft = slider.scrollLeft + 200;
-    console.log(slider.scrollLeft);
+    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft + 200;
+    console.log(sliderRef.current.scrollLeft);
   }
 
   return (
@@ -25,7 +26,11 @@ export default function GenreSelector({
       <div className={styles.leftArrow} onClick={handleSlideLeft}>
         <div className={styles.arrow}>&lt;</div>
       </div>
-      <ul id="slider" className={games.length <= 3 ? `${styles.center}` : ''}>
+      <ul
+        id="slider"
+        className={games.length <= 3 ? `${styles.center}` : ''}
+        ref={sliderRef}
+      >
         {uniqueGenresArray.map((genre) => (
           <a
             href="#"
