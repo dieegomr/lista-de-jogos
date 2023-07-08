@@ -2,7 +2,7 @@
   border-radius: 0.8rem;
   flex-direction: column;
   text-align: center;
-  min-width: 12rem;
+  width: 17rem;
   display: flex;
   color: var(--color-darkest);
   background: var(--color-medium);

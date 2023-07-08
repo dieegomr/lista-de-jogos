@@ -1,8 +1,7 @@
 .tabsContainer {
   font-family: 'Roboto', sans-serif;
   background: var(--color-dark);
-  min-width: 21rem;
-  margin: 1rem auto;
+  width: 100%;
   border-radius: 0.7rem;
   overflow: hidden;
   position: relative;

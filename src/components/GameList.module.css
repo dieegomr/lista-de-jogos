@@ -1,12 +1,11 @@
 .list {
-  margin: 0rem 3rem;
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
   justify-content: center;
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 600px) {
   .list {
     grid-template-columns: 1fr 1fr;
     margin: 2rem auto;
@@ -15,7 +14,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1000px) {
   .list {
     grid-template-columns: 1fr 1fr 1fr;
     padding: 0 4rem;
