@@ -6,12 +6,14 @@ export default function GameItem({ game }: GameItemProps) {
 
   return (
     <li className={styles.game}>
+      <div className={styles.genreBox}>
+        <h3 className={styles.genre}>{genre}</h3>
+      </div>
       <img
         src={thumbnail}
         alt={`cartaz do jogo ${title}`}
         className={styles.img}
       />
-      <h3 className={styles.genre}>{genre}</h3>
       <div className={styles.body}>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.description}>{description}</p>

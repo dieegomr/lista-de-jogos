@@ -1,4 +1,5 @@
 .game {
+  position: relative;
   border-radius: 0.8rem;
   flex-direction: column;
   text-align: center;
@@ -40,6 +41,12 @@
   padding: 0.3rem;
   background: var(--color-accent);
   margin-bottom: 1rem;
+}
+
+.genreBox {
+  position: absolute;
+  right: 0.8rem;
+  display: flex;
 }
 
 .game h3 {
