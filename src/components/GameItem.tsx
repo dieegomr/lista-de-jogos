@@ -1,4 +1,5 @@
 import { GameItemProps } from '../types/GameItemProps';
+import FavoriteGameIcon from './FavoriteGameIcon';
 import styles from './GameItem.module.css';
 
 export default function GameItem({ game }: GameItemProps) {
@@ -15,7 +16,9 @@ export default function GameItem({ game }: GameItemProps) {
         className={styles.img}
       />
       <div className={styles.actionContainer}>
-        <div className={styles.heartBox}>❤️</div>
+        <div className={styles.heartBox}>
+          <FavoriteGameIcon game={game} />
+        </div>
         <div className={styles.starsBox}>⭐️</div>
       </div>
       <div className={styles.body}>

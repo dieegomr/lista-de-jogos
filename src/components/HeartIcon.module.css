@@ -1,0 +1,7 @@
+.heartIcon {
+  cursor: pointer;
+}
+
+.heartIcon:active {
+  transform: translateY(1px);
+}
