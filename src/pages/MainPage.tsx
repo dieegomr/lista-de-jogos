@@ -24,7 +24,7 @@ export default function MainPage({
   const { logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  function handleClick() {
+  function handleAuth() {
     if (isAuthenticated) {
       logout();
       navigate('/');
@@ -33,14 +33,21 @@ export default function MainPage({
     }
   }
 
+  function handleFavorites() {
+    isAuthenticated
+      ? navigate('/favorites')
+      : alert('é necessario logar para acessar os favoritos');
+  }
+
   return (
     <div className={styles.app}>
       <NavBar>
         <Logo />
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <ActionButton onClick={handleClick}>
+        <ActionButton onClick={handleAuth}>
           {isAuthenticated ? 'Logout' : 'Login'}
         </ActionButton>
+        <ActionButton onClick={handleFavorites}>Favorites</ActionButton>
       </NavBar>
       <GenreSelector
         selectedGenre={selectedGenre}

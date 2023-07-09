@@ -5,6 +5,7 @@ import GameList from './components/GameList';
 import { useState } from 'react';
 import { GamesProvider } from './contexts/gameContext/provider';
 import { AuthProvider } from './contexts/authContext/provider';
+import ProtectedRoute from './pages/ProtectedRoute';
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -36,7 +37,15 @@ export default function App() {
                   />
                 }
               />
-              <Route path="favorites" element={<p>favorites</p>} />
+
+              <Route
+                path="favorites"
+                element={
+                  <ProtectedRoute>
+                    <p>favorites</p>
+                  </ProtectedRoute>
+                }
+              />
             </Route>
             <Route></Route>
           </Routes>
