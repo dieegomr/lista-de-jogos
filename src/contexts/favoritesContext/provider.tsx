@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { Game } from '../../types/Game';
 import { FavoritesContext } from '.';
-import { ref, set } from 'firebase/database';
+import { ref, remove, set } from 'firebase/database';
 import { database } from '../../firebase';
 
 interface FavoritesProviderProps {
@@ -22,8 +22,15 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
     setFavorites((favorites) => [...favorites, game]);
   }
 
+  async function removeFavoriteGame(id: number) {
+    remove(ref(database, 'favorites/' + id));
+    setFavorites((favorites) => favorites.filter((game) => game.id !== id));
+  }
+
   return (
-    <FavoritesContext.Provider value={{ favorites, addFavoriteGame }}>
+    <FavoritesContext.Provider
+      value={{ favorites, addFavoriteGame, removeFavoriteGame }}
+    >
       {children}
     </FavoritesContext.Provider>
   );

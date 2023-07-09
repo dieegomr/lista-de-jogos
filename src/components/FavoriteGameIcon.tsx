@@ -11,14 +11,14 @@ interface FavoriteGameIconProps {
 export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
   const [tempFull, setTempFull] = useState(false);
 
-  const { favorites, addFavoriteGame } = useFavorites();
+  const { favorites, addFavoriteGame, removeFavoriteGame } = useFavorites();
 
   const isFavorite = favorites
     .map((favoriteGame) => favoriteGame.id)
     .includes(game.id);
 
   async function handleClick(game: Game) {
-    addFavoriteGame(game);
+    isFavorite ? removeFavoriteGame(game.id) : addFavoriteGame(game);
   }
 
   return (
