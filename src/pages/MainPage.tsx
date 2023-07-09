@@ -1,10 +1,12 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import GenreSelector from '../components/GenreSelector';
 import Logo from '../components/Logo';
 import Main from '../components/Main';
 import NavBar from '../components/NavBar';
 import Search from '../components/Search';
 import styles from './MainPage.module.css';
+import ActionButton from '../components/ActionButton';
+import { useAuth } from '../contexts/authContext/hook';
 
 interface MainPageProps {
   searchQuery: string;
@@ -19,11 +21,26 @@ export default function MainPage({
   selectedGenre,
   setSelectedGenre,
 }: MainPageProps) {
+  const { logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  function handleClick() {
+    if (isAuthenticated) {
+      logout();
+      navigate('/');
+    } else {
+      navigate('/auth');
+    }
+  }
+
   return (
     <div className={styles.app}>
       <NavBar>
         <Logo />
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <ActionButton onClick={handleClick}>
+          {isAuthenticated ? 'Logout' : 'Login'}
+        </ActionButton>
       </NavBar>
       <GenreSelector
         selectedGenre={selectedGenre}

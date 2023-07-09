@@ -1,0 +1,16 @@
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  width: 5rem;
+  height: 2rem;
+  box-shadow: 1rem;
+  border-radius: 0.2rem;
+  background: var(--color-theme);
+}
+
+.actionBtn:active {
+  transform: translateY(1px);
+}
