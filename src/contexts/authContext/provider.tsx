@@ -1,5 +1,7 @@
 import { ReactNode, useReducer } from 'react';
 import { AuthContext } from '.';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -27,10 +29,14 @@ function reducer(
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [{ user, isAuthenticated }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
-  function login(email: string, password: string) {
-    //Firebase
+  async function login(email: string, password: string) {
+    await signInWithEmailAndPassword(auth, email, password);
+    dispatch({ type: 'login', payload: email });
   }
 
   function logout() {

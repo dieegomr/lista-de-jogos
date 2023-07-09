@@ -23,7 +23,7 @@
 .login h1 {
   align-self: center;
   font-size: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .login h2 {
@@ -34,8 +34,8 @@
 .row {
   display: flex;
   flex-direction: column;
+  margin-bottom: 0.5rem;
   min-width: 15rem;
-  margin-bottom: 1rem;
 }
 
 .actions {
@@ -43,9 +43,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .actions .btn {
   width: 50%;
+}
+
+.messageBox {
+  display: flex;
+  justify-content: center;
+  height: 2rem;
+}
+
+.messageBox span {
+  color: var(--color-alert);
 }
