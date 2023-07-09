@@ -6,30 +6,33 @@ import { GamesProvider } from './contexts/gameContext/provider';
 import { AuthProvider } from './contexts/authContext/provider';
 import ProtectedRoute from './pages/ProtectedRoute';
 import { SearchProvider } from './contexts/searchContext/provider';
+import { FavoritesProvider } from './contexts/favoritesContext/provider';
 
 export default function App() {
   return (
     <SearchProvider>
       <AuthProvider>
         <GamesProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route index element={<Navigate replace to="games" />} />
-              <Route path="auth" element={<AuthenticationPage />} />
-              <Route element={<MainPage />}>
-                <Route path="games" element={<GameList />} />
-                <Route
-                  path="favorites"
-                  element={
-                    <ProtectedRoute>
-                      <p>favorites</p>
-                    </ProtectedRoute>
-                  }
-                />
-              </Route>
-              <Route></Route>
-            </Routes>
-          </BrowserRouter>
+          <FavoritesProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route index element={<Navigate replace to="games" />} />
+                <Route path="auth" element={<AuthenticationPage />} />
+                <Route element={<MainPage />}>
+                  <Route path="games" element={<GameList />} />
+                  <Route
+                    path="favorites"
+                    element={
+                      <ProtectedRoute>
+                        <p>favorites</p>
+                      </ProtectedRoute>
+                    }
+                  />
+                </Route>
+                <Route></Route>
+              </Routes>
+            </BrowserRouter>
+          </FavoritesProvider>
         </GamesProvider>
       </AuthProvider>
     </SearchProvider>
