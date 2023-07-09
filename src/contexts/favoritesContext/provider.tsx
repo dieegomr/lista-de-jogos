@@ -1,8 +1,8 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Game } from '../../types/Game';
 import { FavoritesContext } from '.';
-import { ref, remove, set } from 'firebase/database';
-import { database } from '../../firebase';
+import { child, get, ref, remove, set } from 'firebase/database';
+import { database, databaseRef } from '../../firebase';
 
 interface FavoritesProviderProps {
   children: ReactNode;
@@ -10,6 +10,35 @@ interface FavoritesProviderProps {
 
 export function FavoritesProvider({ children }: FavoritesProviderProps) {
   const [favorites, setFavorites] = useState<Game[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  useEffect(function () {
+    async function fetchFavoriteGames() {
+      try {
+        setIsLoading(true);
+        setError('');
+        get(child(databaseRef, 'favorites/'))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              setFavorites(Object.values(snapshot.val()));
+            } else {
+              console.log('No data available');
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+
+        setIsLoading(false);
+      } catch (err: unknown) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchFavoriteGames();
+  }, []);
 
   async function addFavoriteGame(game: Game) {
     set(ref(database, 'favorites/' + game.id), {
