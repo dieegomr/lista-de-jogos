@@ -54,3 +54,18 @@
   align-self: flex-end;
   font-size: 0.8rem;
 }
+
+.actionContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.actionContainer .starsBox,
+.actionContainer .heartBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 1.5rem;
+  border: 1px red solid;
+}

@@ -14,6 +14,10 @@ export default function GameItem({ game }: GameItemProps) {
         alt={`cartaz do jogo ${title}`}
         className={styles.img}
       />
+      <div className={styles.actionContainer}>
+        <div className={styles.heartBox}>❤️</div>
+        <div className={styles.starsBox}>⭐️</div>
+      </div>
       <div className={styles.body}>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.description}>{description}</p>
