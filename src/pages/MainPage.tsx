@@ -8,15 +8,7 @@ import styles from './MainPage.module.css';
 import ActionButton from '../components/ActionButton';
 import { useAuth } from '../contexts/authContext/hook';
 
-interface MainPageProps {
-  selectedGenre: string;
-  setSelectedGenre: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export default function MainPage({
-  selectedGenre,
-  setSelectedGenre,
-}: MainPageProps) {
+export default function MainPage() {
   const { logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -45,10 +37,7 @@ export default function MainPage({
         </ActionButton>
         <ActionButton onClick={handleFavorites}>Favorites</ActionButton>
       </NavBar>
-      <GenreSelector
-        selectedGenre={selectedGenre}
-        setSelectedGenre={setSelectedGenre}
-      />
+      <GenreSelector />
       <Main>
         <Outlet />
       </Main>

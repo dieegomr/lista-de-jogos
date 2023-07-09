@@ -1,15 +1,16 @@
 import GameItem from './GameItem';
 import styles from './GameList.module.css';
 import ErrorMessage from './ErrorMessage';
-import { GameListProps } from '../types/GameListProps';
 import { filterGamesByGenre, searchGamesByQuery } from '../utils/helpers';
 import { useGames } from '../contexts/gameContext/hook';
 import { useSearchQuery } from '../contexts/searchContext/hook';
 import Loader from '../ui/Loader';
+import { useGenres } from '../hooks/useGenres';
 
-export default function GameList({ selectedGenre }: GameListProps) {
+export default function GameList() {
   const { games, isLoading, error } = useGames();
   const { searchQuery } = useSearchQuery();
+  const { selectedGenre } = useGenres();
 
   const filteredGames = filterGamesByGenre(games, selectedGenre);
 

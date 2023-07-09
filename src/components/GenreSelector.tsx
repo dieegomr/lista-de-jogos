@@ -1,19 +1,12 @@
-import { useGames } from '../contexts/gameContext/hook';
+import { useGenres } from '../hooks/useGenres';
 import { useSlider } from '../hooks/useSlider';
-import { FilterProps } from '../types/FilterProps';
-import { getArrayOfUniqueGenres } from '../utils/helpers';
 import styles from './GenreSelector.module.css';
 
-export default function GenreSelector({
-  selectedGenre,
-  setSelectedGenre,
-}: FilterProps) {
-  const { games } = useGames();
-
-  const allGenresArray = getArrayOfUniqueGenres(games);
-  const uniqueGenresArray = ['All', ...allGenresArray];
-
+export default function GenreSelector() {
   const { handleSlideLeft, handleSlideRight, sliderRef } = useSlider();
+  const { uniqueGenres, selectedGenre, setGenre } = useGenres();
+
+  const genreSelectorOptions = ['All', ...uniqueGenres];
 
   return (
     <div className={styles.tabsContainer}>
@@ -22,14 +15,14 @@ export default function GenreSelector({
       </div>
       <ul
         id="slider"
-        className={games.length <= 3 ? `${styles.center}` : ''}
+        className={genreSelectorOptions.length <= 3 ? `${styles.center}` : ''}
         ref={sliderRef}
       >
-        {uniqueGenresArray.map((genre) => (
+        {genreSelectorOptions.map((genre) => (
           <a
             href="#"
             key={genre}
-            onClick={() => setSelectedGenre(genre)}
+            onClick={() => setGenre(genre)}
             className={styles[`${genre === selectedGenre ? 'active' : ''}`]}
           >
             {genre}
