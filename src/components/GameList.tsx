@@ -4,12 +4,11 @@ import ErrorMessage from './ErrorMessage';
 import { GameListProps } from '../types/GameListProps';
 import { filterGamesByGenre, searchGamesByQuery } from '../utils/helpers';
 import { useGames } from '../contexts/gameContext/hook';
+import { useSearchQuery } from '../contexts/searchContext/hook';
 
-export default function GameList({
-  searchQuery,
-  selectedGenre,
-}: GameListProps) {
+export default function GameList({ selectedGenre }: GameListProps) {
   const { games } = useGames();
+  const { searchQuery } = useSearchQuery();
 
   const filteredGames = filterGamesByGenre(games, selectedGenre);
 

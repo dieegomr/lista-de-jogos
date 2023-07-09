@@ -1,7 +1,9 @@
-import { SearchProps } from '../types/SearchProps';
+import { useSearchQuery } from '../contexts/searchContext/hook';
 import styles from './Search.module.css';
 
-export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
+export default function Search() {
+  const { searchQuery, setSearchQuery } = useSearchQuery();
+
   return (
     <div className={styles.searchContainer}>
       <input

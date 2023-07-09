@@ -6,51 +6,46 @@ import { useState } from 'react';
 import { GamesProvider } from './contexts/gameContext/provider';
 import { AuthProvider } from './contexts/authContext/provider';
 import ProtectedRoute from './pages/ProtectedRoute';
+import { SearchProvider } from './contexts/searchContext/provider';
 
 export default function App() {
-  const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('All');
 
   return (
-    <AuthProvider>
-      <GamesProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route index element={<Navigate replace to="games" />} />
-            <Route path="auth" element={<AuthenticationPage />} />
-            <Route
-              element={
-                <MainPage
-                  searchQuery={searchQuery}
-                  setSearchQuery={setSearchQuery}
-                  selectedGenre={selectedGenre}
-                  setSelectedGenre={setSelectedGenre}
-                />
-              }
-            >
+    <SearchProvider>
+      <AuthProvider>
+        <GamesProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route index element={<Navigate replace to="games" />} />
+              <Route path="auth" element={<AuthenticationPage />} />
               <Route
-                path="games"
                 element={
-                  <GameList
-                    searchQuery={searchQuery}
+                  <MainPage
                     selectedGenre={selectedGenre}
+                    setSelectedGenre={setSelectedGenre}
                   />
                 }
-              />
+              >
+                <Route
+                  path="games"
+                  element={<GameList selectedGenre={selectedGenre} />}
+                />
 
-              <Route
-                path="favorites"
-                element={
-                  <ProtectedRoute>
-                    <p>favorites</p>
-                  </ProtectedRoute>
-                }
-              />
-            </Route>
-            <Route></Route>
-          </Routes>
-        </BrowserRouter>
-      </GamesProvider>
-    </AuthProvider>
+                <Route
+                  path="favorites"
+                  element={
+                    <ProtectedRoute>
+                      <p>favorites</p>
+                    </ProtectedRoute>
+                  }
+                />
+              </Route>
+              <Route></Route>
+            </Routes>
+          </BrowserRouter>
+        </GamesProvider>
+      </AuthProvider>
+    </SearchProvider>
   );
 }

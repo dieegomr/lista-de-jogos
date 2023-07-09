@@ -9,15 +9,11 @@ import ActionButton from '../components/ActionButton';
 import { useAuth } from '../contexts/authContext/hook';
 
 interface MainPageProps {
-  searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   selectedGenre: string;
   setSelectedGenre: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function MainPage({
-  searchQuery,
-  setSearchQuery,
   selectedGenre,
   setSelectedGenre,
 }: MainPageProps) {
@@ -43,7 +39,7 @@ export default function MainPage({
     <div className={styles.app}>
       <NavBar>
         <Logo />
-        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <Search />
         <ActionButton onClick={handleAuth}>
           {isAuthenticated ? 'Logout' : 'Login'}
         </ActionButton>
