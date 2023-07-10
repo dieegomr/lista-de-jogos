@@ -1,6 +1,7 @@
 import { GameItemProps } from '../types/GameItemProps';
 import FavoriteGameIcon from './FavoriteGameIcon';
 import styles from './GameItem.module.css';
+import StarRating from './StarRating';
 
 export default function GameItem({ game }: GameItemProps) {
   const { thumbnail, title, short_description: description, genre } = game;
@@ -19,7 +20,9 @@ export default function GameItem({ game }: GameItemProps) {
         <div className={styles.heartBox}>
           <FavoriteGameIcon game={game} />
         </div>
-        <div className={styles.starsBox}>⭐️</div>
+        <div className={styles.starsBox}>
+          <StarRating maxRating={4} />
+        </div>
       </div>
       <div className={styles.body}>
         <h2 className={styles.title}>{title}</h2>
