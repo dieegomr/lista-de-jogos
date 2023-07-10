@@ -4,9 +4,9 @@ import ErrorMessage from './ErrorMessage';
 import styles from './FavoriteGamesList.module.css';
 
 export default function FavoriteGamesList() {
-  const { favorites } = useFavorites();
+  const { favorites, removeFavoriteGame } = useFavorites();
   function handleOnClick(id: number) {
-    //delete game from favorites
+    removeFavoriteGame(id);
   }
 
   if (!favorites.length)
