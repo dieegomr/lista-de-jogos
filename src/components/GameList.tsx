@@ -7,7 +7,7 @@ import { useFilterAndSearchGames } from '../hooks/useFilterAndSearchGames';
 
 export default function GameList() {
   const { games, isLoading, error } = useGames();
-  const { filteredAndSearchedGames } = useFilterAndSearchGames(games);
+  const { sorted: filteredAndSearchedGames } = useFilterAndSearchGames(games);
 
   if (!isLoading && !error && !filteredAndSearchedGames.length)
     return <ErrorMessage message="Nenhum jogo encontrado 😕" />;

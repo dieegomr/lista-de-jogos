@@ -7,25 +7,25 @@ export default function SortBy() {
   const sortBy = searchParams.get('sortBy');
 
   function handleSortAsc() {
-    searchParams.set('sortBy', 'rating-asc');
+    searchParams.set('sortBy', 'rate-asc');
     setSearchParams(searchParams);
   }
 
   function handleSortDesc() {
-    searchParams.set('sortBy', 'rating-desc');
+    searchParams.set('sortBy', 'rate-desc');
     setSearchParams(searchParams);
   }
 
   return (
     <>
       {!sortBy && isAuthenticated && (
-        <button onClick={handleSortAsc}>Sort by rating &#8593;</button>
+        <button onClick={handleSortAsc}>Sort by rate lowest first</button>
       )}
-      {sortBy === 'rating-desc' && isAuthenticated && (
-        <button onClick={handleSortAsc}>Sort by rating &#8593;</button>
+      {sortBy === 'rate-desc' && isAuthenticated && (
+        <button onClick={handleSortAsc}>Sort by rate lowest first</button>
       )}
-      {sortBy === 'rating-asc' && isAuthenticated && (
-        <button onClick={handleSortDesc}>Sort by rating &#8595;</button>
+      {sortBy === 'rate-asc' && isAuthenticated && (
+        <button onClick={handleSortDesc}>Sort by rate largest first</button>
       )}
     </>
   );

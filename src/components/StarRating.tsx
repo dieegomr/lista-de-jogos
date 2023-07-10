@@ -27,14 +27,14 @@ export default function StarRating({ maxRating = 4, gameId }: StarRatingProps) {
   const [rating, setRating] = useState(rate);
   const [tempRating, setTempRating] = useState(0);
 
-  function handleRating(rating: number) {
+  function handleRating(rate: number) {
     if (!isAuthenticated) {
       alert('voce precisa estar logado');
       navigate('/auth');
     } else {
-      const ratedGame = { gameId: gameId, rate: rating };
+      const ratedGame = { gameId: gameId, rate: rate };
       addRatedGame(ratedGame);
-      setRating(rating);
+      setRating(rate);
     }
   }
 
