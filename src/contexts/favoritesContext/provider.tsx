@@ -46,6 +46,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
       title: game.title,
       description: game.short_description,
       genre: game.genre,
+      image: game.thumbnail,
     });
 
     setFavorites((favorites) => [...favorites, game]);

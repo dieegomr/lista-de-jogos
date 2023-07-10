@@ -7,6 +7,7 @@ import { AuthProvider } from './contexts/authContext/provider';
 import ProtectedRoute from './pages/ProtectedRoute';
 import { SearchProvider } from './contexts/searchContext/provider';
 import { FavoritesProvider } from './contexts/favoritesContext/provider';
+import FavoriteGamesList from './components/FavoriteGamesList';
 
 export default function App() {
   return (
@@ -24,7 +25,7 @@ export default function App() {
                     path="favorites"
                     element={
                       <ProtectedRoute>
-                        <p>favorites</p>
+                        <FavoriteGamesList />
                       </ProtectedRoute>
                     }
                   />

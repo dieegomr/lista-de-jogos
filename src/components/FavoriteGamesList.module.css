@@ -1,0 +1,51 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--color-darkest);
+  gap: 1rem;
+}
+
+.game {
+  display: flex;
+  justify-content: space-between;
+  background: var(--color-medium);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.image {
+  min-width: 30%;
+}
+
+.image img {
+  display: block;
+  max-width: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 50%;
+}
+
+.info .title {
+  display: flex;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.3rem;
+  min-width: 10%;
+}
+
+.actions button {
+  width: 2rem;
+  height: 2rem;
+}
