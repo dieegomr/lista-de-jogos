@@ -21,7 +21,7 @@ export default function GameItem({ game }: GameItemProps) {
           <FavoriteGameIcon game={game} />
         </div>
         <div className={styles.starsBox}>
-          <StarRating maxRating={4} />
+          <StarRating maxRating={4} gameId={game.id} />
         </div>
       </div>
       <div className={styles.body}>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Star from './Star';
+import { useRatedGames } from '../contexts/ratedGamesContext/hook';
 
 const containerStyle = {
   display: 'flex',
@@ -13,13 +14,18 @@ const starContainerStyle = {
 
 interface StarRatingProps {
   maxRating: number;
+  gameId: number;
 }
 
-export default function StarRating({ maxRating = 4 }: StarRatingProps) {
-  const [rating, setRating] = useState(0);
+export default function StarRating({ maxRating = 4, gameId }: StarRatingProps) {
+  const { addRatedGame, getRate } = useRatedGames();
+  const rate = getRate(gameId);
+  const [rating, setRating] = useState(rate);
   const [tempRating, setTempRating] = useState(0);
 
   function handleRating(rating: number) {
+    const ratedGame = { gameId: gameId, rate: rating };
+    addRatedGame(ratedGame);
     setRating(rating);
   }
 

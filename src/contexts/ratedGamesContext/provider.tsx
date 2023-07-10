@@ -45,8 +45,13 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
     setRatedGames((ratedGames) => [...ratedGames, ratedGame]);
   }
 
+  function getRate(gameId: number) {
+    const rate = ratedGames.find((game) => game.gameId === gameId)?.rate || 0;
+    return rate;
+  }
+
   return (
-    <FavoritesContext.Provider value={{ ratedGames, addRatedGame }}>
+    <FavoritesContext.Provider value={{ ratedGames, addRatedGame, getRate }}>
       {children}
     </FavoritesContext.Provider>
   );
