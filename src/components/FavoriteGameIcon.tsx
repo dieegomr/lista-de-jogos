@@ -37,6 +37,7 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
       onMouseEnter={() => setTempFull(true)}
       onMouseLeave={() => setTempFull(false)}
       onClick={() => handleClick(game)}
+      role="button"
     >
       {isAuthenticated && (
         <HeartIcon full={isFavorite ? isFavorite : tempFull} />
