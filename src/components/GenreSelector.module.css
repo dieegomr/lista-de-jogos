@@ -49,6 +49,11 @@
   border-radius: 0.3rem;
   user-select: none;
   white-space: nowrap;
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.tabsContainer a:active {
+  transform: translateY(1px);
 }
 
 .tabsContainer a.active {
