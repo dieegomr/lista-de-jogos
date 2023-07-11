@@ -23,9 +23,11 @@ export default function NavBar() {
     <nav className={styles.navBar}>
       <div className={styles.top}>
         <Logo />
-        <ActionButton onClick={handleAuth}>
-          {isAuthenticated ? 'Logout' : 'Login'}
-        </ActionButton>
+        <div className={styles.btn}>
+          <ActionButton onClick={handleAuth}>
+            {isAuthenticated ? 'Logout' : 'Login'}
+          </ActionButton>
+        </div>
       </div>
       <div className={styles.search}>
         <Search />

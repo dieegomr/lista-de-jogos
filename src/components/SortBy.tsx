@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext/hook';
+import ActionButton from './ActionButton';
 
 export default function SortBy() {
   const { isAuthenticated } = useAuth();
@@ -21,9 +22,10 @@ export default function SortBy() {
       {!sortBy && isAuthenticated && (
         <button onClick={handleSortAsc}>Sort by rate lowest first</button>
       )}
-      {sortBy === 'rate-desc' && isAuthenticated && (
-        <button onClick={handleSortAsc}>Sort by rate lowest first</button>
-      )}
+      {(!sortBy && isAuthenticated) ||
+        (sortBy === 'rate-desc' && isAuthenticated && (
+          <button onClick={handleSortAsc}>Sort by rate lowest first</button>
+        ))}
       {sortBy === 'rate-asc' && isAuthenticated && (
         <button onClick={handleSortDesc}>Sort by rate largest first</button>
       )}
