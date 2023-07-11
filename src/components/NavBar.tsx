@@ -15,7 +15,7 @@ export default function NavBar() {
       logout();
       navigate('/games');
     } else {
-      navigate('/auth');
+      navigate('/auth?mode=login');
     }
   }
 

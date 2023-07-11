@@ -1,0 +1,37 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+  min-width: 15rem;
+}
+
+.row input {
+  border: none;
+  font-weight: 300;
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  border-radius: 0.7rem;
+  background: var(--color-medium);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.actions .btn {
+  width: 50%;
+}
+
+.messageBox {
+  display: flex;
+  justify-content: center;
+  height: 2rem;
+}
+
+.messageBox span {
+  color: var(--color-alert);
+}

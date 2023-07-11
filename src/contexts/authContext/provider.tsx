@@ -1,6 +1,9 @@
 import { ReactNode, useReducer } from 'react';
 import { AuthContext } from '.';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { auth } from '../../firebase';
 
 interface AuthProviderProps {
@@ -34,6 +37,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     initialState
   );
 
+  async function signup(email: string, password: string) {
+    await createUserWithEmailAndPassword(auth, email, password);
+    dispatch({ type: 'login', payload: email });
+  }
+
   async function login(email: string, password: string) {
     await signInWithEmailAndPassword(auth, email, password);
     dispatch({ type: 'login', payload: email });
@@ -44,7 +52,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated, login, logout, signup }}
+    >
       {children}
     </AuthContext.Provider>
   );

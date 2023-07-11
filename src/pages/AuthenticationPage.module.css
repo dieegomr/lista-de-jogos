@@ -10,12 +10,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem auto;
+  margin: 0rem auto;
   padding: 4rem 0;
   width: 100%;
   max-width: 30rem;
-  background: var(--color-medium);
-  color: var(--color-dark);
+  background: var(--color-dark);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
   border-radius: 0.5rem;
   gap: 1rem;
 }
@@ -23,39 +23,8 @@
 .login h1 {
   align-self: center;
   font-size: 1.5rem;
-  margin-bottom: 1rem;
 }
 
 .login h2 {
   align-self: center;
-  margin-bottom: 1rem;
-}
-
-.row {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0.5rem;
-  min-width: 15rem;
-}
-
-.actions {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-.actions .btn {
-  width: 50%;
-}
-
-.messageBox {
-  display: flex;
-  justify-content: center;
-  height: 2rem;
-}
-
-.messageBox span {
-  color: var(--color-alert);
 }
