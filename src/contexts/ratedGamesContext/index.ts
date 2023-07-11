@@ -3,7 +3,7 @@ import { RatedGameType } from './provider';
 
 interface RatedGamesContextType {
   ratedGames: RatedGameType[];
-  addRatedGame: (ratedGame: RatedGameType) => void;
+  rateGame: (ratedGame: RatedGameType) => void;
   getRate: (gameId: number) => number;
 }
 

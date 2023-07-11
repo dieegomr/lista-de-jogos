@@ -22,7 +22,7 @@ interface StarRatingProps {
 export default function StarRating({ maxRating = 4, gameId }: StarRatingProps) {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const { addRatedGame, getRate } = useRatedGames();
+  const { rateGame, getRate } = useRatedGames();
   const rate = getRate(gameId);
   const [rating, setRating] = useState(rate);
   const [tempRating, setTempRating] = useState(0);
@@ -33,7 +33,7 @@ export default function StarRating({ maxRating = 4, gameId }: StarRatingProps) {
       navigate('/auth');
     } else {
       const ratedGame = { gameId: gameId, rate: rate };
-      addRatedGame(ratedGame);
+      rateGame(ratedGame);
       setRating(rate);
     }
   }

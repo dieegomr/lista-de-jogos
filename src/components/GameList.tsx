@@ -3,13 +3,18 @@ import styles from './GameList.module.css';
 import ErrorMessage from './ErrorMessage';
 import { useGames } from '../contexts/gameContext/hook';
 import Loader from '../ui/Loader';
-import { useFilterAndSearchGames } from '../hooks/useFilterAndSearchGames';
+import { useSort } from '../hooks/useSort';
+import { useSearch } from '../hooks/useSearch';
+import { useFilter } from '../hooks/useFilter';
 
 export default function GameList() {
   const { games, isLoading, error } = useGames();
-  const { sorted: filteredAndSearchedGames } = useFilterAndSearchGames(games);
 
-  if (!isLoading && !error && !filteredAndSearchedGames.length)
+  const { searchedGames } = useSearch(games);
+  const { filteredGames } = useFilter(searchedGames);
+  const { sortedGames } = useSort(filteredGames);
+
+  if (!isLoading && !error && !sortedGames.length)
     return <ErrorMessage message="Nenhum jogo encontrado 😕" />;
 
   return (
@@ -18,7 +23,7 @@ export default function GameList() {
       {error && !isLoading && <ErrorMessage message={error} />}
       {!isLoading && !error && (
         <ul className={styles.list}>
-          {filteredAndSearchedGames.map((game) => (
+          {sortedGames.map((game) => (
             <GameItem game={game} key={game.id} />
           ))}
         </ul>
