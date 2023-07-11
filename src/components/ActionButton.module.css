@@ -5,7 +5,7 @@
   cursor: pointer;
   color: var(--color-dark);
   border: none;
-
+  gap: 0.3rem;
   width: 100%;
   height: 100%;
   box-shadow: 1rem;

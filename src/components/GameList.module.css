@@ -22,6 +22,11 @@
   width: 80%;
 }
 
+.btn {
+  width: 10rem;
+  height: 2rem;
+}
+
 @media screen and (min-width: 600px) {
   .list {
     grid-template-columns: 1fr 1fr;
