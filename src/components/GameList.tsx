@@ -26,7 +26,9 @@ export default function GameList() {
     <div className={styles.gameList}>
       <div className={styles.header}>
         <h1>Games</h1>
-        <SortBy />
+        <div className={styles.btn}>
+          <SortBy />
+        </div>
       </div>
       {isLoading && !error && <Loader />}
       {error && !isLoading && <ErrorMessage message={error} />}

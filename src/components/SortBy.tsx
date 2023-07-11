@@ -20,14 +20,20 @@ export default function SortBy() {
   return (
     <>
       {!sortBy && isAuthenticated && (
-        <button onClick={handleSortAsc}>Sort by rate lowest first</button>
+        <ActionButton onClick={handleSortAsc}>
+          Sort by rate lowest first
+        </ActionButton>
       )}
       {(!sortBy && isAuthenticated) ||
         (sortBy === 'rate-desc' && isAuthenticated && (
-          <button onClick={handleSortAsc}>Sort by rate lowest first</button>
+          <ActionButton onClick={handleSortAsc}>
+            Sort by rate lowest first
+          </ActionButton>
         ))}
       {sortBy === 'rate-asc' && isAuthenticated && (
-        <button onClick={handleSortDesc}>Sort by rate largest first</button>
+        <ActionButton onClick={handleSortDesc}>
+          Sort by rate largest first
+        </ActionButton>
       )}
     </>
   );
