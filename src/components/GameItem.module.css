@@ -15,6 +15,7 @@
   object-fit: fill;
   border-top-left-radius: 0.8rem;
   border-top-right-radius: 0.8rem;
+  margin-bottom: 0.5rem;
 }
 
 .game .body {
@@ -26,6 +27,7 @@
   background: var(--color-medium);
 }
 .game .title {
+  margin-top: 0.5rem;
   font-family: 'Bonus Giant', sans-serif;
   line-height: 1.4rem;
 }
@@ -55,16 +57,10 @@
   font-size: 0.8rem;
 }
 
-.actionContainer {
-  display: flex;
-  justify-content: space-around;
-}
-
-.actionContainer .starsBox,
-.actionContainer .heartBox {
+.starsBox,
+.heartBox {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0.5rem;
   height: 1.5rem;
 }
