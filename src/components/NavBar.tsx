@@ -13,7 +13,7 @@ export default function NavBar() {
   function handleAuth() {
     if (isAuthenticated) {
       logout();
-      navigate('/');
+      navigate('/games');
     } else {
       navigate('/auth');
     }
