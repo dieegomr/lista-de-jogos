@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   border-radius: 0.9rem;
-  margin-bottom: 1rem;
   gap: 1rem;
 }
 
@@ -31,14 +30,4 @@
 
 .navBar .actions {
   display: flex;
-}
-
-@media screen and (min-width: 480px) {
-  .navBar {
-    flex-direction: row;
-  }
-  .navBar h1 {
-    font-size: 1.2rem;
-    margin: 0;
-  }
 }

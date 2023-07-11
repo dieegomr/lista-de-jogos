@@ -1,3 +1,7 @@
+.searchContainer {
+  width: 70%;
+}
+
 .search {
   width: 100%;
   font-weight: 300;
@@ -20,13 +24,8 @@
   transform: translateY(-2px);
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 1000px) {
   .searchContainer {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .search {
-    width: 70%;
+    width: 60%;
   }
 }
