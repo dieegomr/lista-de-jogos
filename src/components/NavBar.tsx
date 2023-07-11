@@ -31,13 +31,19 @@ export default function NavBar() {
 
   return (
     <nav className={styles.navBar}>
-      <Logo />
-      <Search />
-      <ActionButton onClick={handleAuth}>
-        {isAuthenticated ? 'Logout' : 'Login'}
-      </ActionButton>
-      <ActionButton onClick={handleFavorites}>Favorites</ActionButton>
-      <ActionButton onClick={handleGames}>Games</ActionButton>
+      <div className={styles.top}>
+        <Logo />
+        <ActionButton onClick={handleAuth}>
+          {isAuthenticated ? 'Logout' : 'Login'}
+        </ActionButton>
+      </div>
+      <div className={styles.search}>
+        <Search />
+      </div>
+      <div className={styles.actions}>
+        <ActionButton onClick={handleGames}>Games</ActionButton>
+        <ActionButton onClick={handleFavorites}>Favorites</ActionButton>
+      </div>
     </nav>
   );
 }

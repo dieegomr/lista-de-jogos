@@ -3,10 +3,28 @@
   flex-direction: column;
   align-items: center;
   border-radius: 0.9rem;
+  gap: 1rem;
 }
 
-.navBar h1 {
-  margin-bottom: 0.5em;
+.navBar .top {
+  display: flex;
+  align-self: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navBar .top h1 {
+  font-size: 1rem;
+}
+
+.navBar .search {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.navBar .actions {
+  display: flex;
 }
 
 @media screen and (min-width: 480px) {
