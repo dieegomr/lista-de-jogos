@@ -24,12 +24,14 @@ export default function GameList() {
 
   return (
     <div className={styles.gameList}>
-      <div className={styles.header}>
-        <h1>Games</h1>
-        <div className={styles.btn}>
-          <SortBy />
+      {!isLoading && !error && (
+        <div className={styles.header}>
+          <h1>Games</h1>
+          <div className={styles.btn}>
+            <SortBy />
+          </div>
         </div>
-      </div>
+      )}
       {isLoading && !error && <Loader />}
       {error && !isLoading && <ErrorMessage message={error} />}
       {!isLoading && !error && (
