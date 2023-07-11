@@ -3,12 +3,13 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: var(--color-dark);
   border: none;
   width: 5rem;
   height: 2rem;
   box-shadow: 1rem;
   border-radius: 0.2rem;
-  background: var(--color-theme);
+  background: var(--color-medium);
 }
 
 .actionBtn:active {

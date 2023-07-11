@@ -24,4 +24,5 @@
 body {
   color: var(--color-light);
   background-color: var(--color-darkest);
+  font-family: 'Ysabeau SC', sans-serif;
 }
