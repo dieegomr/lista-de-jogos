@@ -4,7 +4,6 @@ import Main from '../components/Main';
 import NavBar from '../components/NavBar';
 
 import styles from './MainPage.module.css';
-import SortBy from '../components/SortBy';
 
 export default function MainPage() {
   return (
@@ -12,7 +11,6 @@ export default function MainPage() {
       <NavBar />
       <GenreSelector />
       <Main>
-        <SortBy />
         <Outlet />
       </Main>
     </div>

@@ -1,8 +1,25 @@
+.gameList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .list {
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
   justify-content: center;
+}
+
+.header {
+  display: flex;
+  min-width: 17rem;
+  margin-bottom: 1rem;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  width: 80%;
 }
 
 @media screen and (min-width: 600px) {

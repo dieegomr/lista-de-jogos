@@ -7,6 +7,7 @@ import { useSort } from '../hooks/useSort';
 import { useSearch } from '../hooks/useSearch';
 import { useFilter } from '../hooks/useFilter';
 import { useAuth } from '../contexts/authContext/hook';
+import SortBy from './SortBy';
 
 export default function GameList() {
   const { games, isLoading, error } = useGames();
@@ -22,7 +23,11 @@ export default function GameList() {
     return <ErrorMessage message="Nenhum jogo encontrado 😕" />;
 
   return (
-    <>
+    <div className={styles.gameList}>
+      <div className={styles.header}>
+        <h1>Games</h1>
+        <SortBy />
+      </div>
       {isLoading && !error && <Loader />}
       {error && !isLoading && <ErrorMessage message={error} />}
       {!isLoading && !error && (
@@ -32,6 +37,6 @@ export default function GameList() {
           ))}
         </ul>
       )}
-    </>
+    </div>
   );
 }
