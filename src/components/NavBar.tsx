@@ -25,6 +25,10 @@ export default function NavBar() {
       : alert('é necessario logar para acessar os favoritos');
   }
 
+  function handleGames() {
+    navigate('/games');
+  }
+
   return (
     <nav className={styles.navBar}>
       <Logo />
@@ -33,6 +37,7 @@ export default function NavBar() {
         {isAuthenticated ? 'Logout' : 'Login'}
       </ActionButton>
       <ActionButton onClick={handleFavorites}>Favorites</ActionButton>
+      <ActionButton onClick={handleGames}>Games</ActionButton>
     </nav>
   );
 }
