@@ -19,16 +19,6 @@ export default function NavBar() {
     }
   }
 
-  function handleFavorites() {
-    isAuthenticated
-      ? navigate('/favorites')
-      : alert('é necessario logar para acessar os favoritos');
-  }
-
-  function handleGames() {
-    navigate('/games');
-  }
-
   return (
     <nav className={styles.navBar}>
       <div className={styles.top}>
@@ -39,10 +29,6 @@ export default function NavBar() {
       </div>
       <div className={styles.search}>
         <Search />
-      </div>
-      <div className={styles.actions}>
-        <ActionButton onClick={handleGames}>Games</ActionButton>
-        <ActionButton onClick={handleFavorites}>Favorites</ActionButton>
       </div>
     </nav>
   );

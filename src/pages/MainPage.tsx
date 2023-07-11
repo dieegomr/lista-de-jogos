@@ -4,6 +4,7 @@ import Main from '../components/Main';
 import NavBar from '../components/NavBar';
 
 import styles from './MainPage.module.css';
+import MainNav from '../components/MainNav';
 
 export default function MainPage() {
   return (
@@ -11,6 +12,7 @@ export default function MainPage() {
       <NavBar />
       <GenreSelector />
       <Main>
+        <MainNav />
         <Outlet />
       </Main>
     </div>
