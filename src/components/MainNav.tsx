@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/authContext/hook';
 export default function MainNav() {
   const { isAuthenticated } = useAuth();
 
-  const direction = isAuthenticated ? 'favorites' : 'auth';
+  const direction = isAuthenticated ? 'favorites' : 'auth?mode=login';
 
   function handleFavorites() {
     if (!isAuthenticated) alert('Voce precisa estar logado');
