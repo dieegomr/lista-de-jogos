@@ -5,12 +5,15 @@ import HeartIcon from './HeartIcon';
 import { useFavorites } from '../contexts/favoritesContext/hook';
 import { useAuth } from '../contexts/authContext/hook';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../ui/Modal';
 
 interface FavoriteGameIconProps {
   game: Game;
 }
 
 export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   const navigate = useNavigate();
 
   const [tempFull, setTempFull] = useState(false);
@@ -24,25 +27,35 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
 
   async function handleClick(game: Game) {
     if (!isAuthenticated) {
-      alert('voce precisa estar logado');
-      navigate('/auth?mode=login');
+      setIsOpenModal(true);
     } else {
       isFavorite ? removeFavoriteGame(game.id) : addFavoriteGame(game);
     }
   }
 
   return (
-    <span
-      className={styles.heartIcon}
-      onMouseEnter={() => setTempFull(true)}
-      onMouseLeave={() => setTempFull(false)}
-      onClick={() => handleClick(game)}
-      role="button"
-    >
-      {isAuthenticated && (
-        <HeartIcon full={isFavorite ? isFavorite : tempFull} />
+    <>
+      {isOpenModal && (
+        <Modal onClose={() => setIsOpenModal((isOpenModal) => !isOpenModal)}>
+          <p>Você precisa estar logado para realizar essa ação</p>
+          <button onClick={() => navigate('/auth?mode=login')}>Logar</button>
+          <button onClick={() => setIsOpenModal((isOpenModal) => !isOpenModal)}>
+            Cancelar
+          </button>
+        </Modal>
       )}
-      {!isAuthenticated && <HeartIcon full={tempFull} />}
-    </span>
+      <span
+        className={styles.heartIcon}
+        onMouseEnter={() => setTempFull(true)}
+        onMouseLeave={() => setTempFull(false)}
+        onClick={() => handleClick(game)}
+        role="button"
+      >
+        {isAuthenticated && (
+          <HeartIcon full={isFavorite ? isFavorite : tempFull} />
+        )}
+        {!isAuthenticated && <HeartIcon full={tempFull} />}
+      </span>
+    </>
   );
 }
