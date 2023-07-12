@@ -1,0 +1,29 @@
+.overlay {
+  display: block;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  width: 18rem;
+  height: 10rem;
+  padding: 3rem;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  background-color: var(--color-medium);
+  border-radius: 0.25rem;
+  z-index: 10;
+}
+
+.modal .closeBtn {
+  display: flex;
+  cursor: pointer;
+  position: fixed;
+  top: 8px;
+  right: 8px;
+}
