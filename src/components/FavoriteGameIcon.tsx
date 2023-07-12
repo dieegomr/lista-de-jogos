@@ -4,7 +4,6 @@ import { Game } from '../types/Game';
 import HeartIcon from './HeartIcon';
 import { useFavorites } from '../contexts/favoritesContext/hook';
 import { useAuth } from '../contexts/authContext/hook';
-import Modal from '../ui/Modal';
 import LoginAlertMessage from './LoginAlertMessage';
 
 interface FavoriteGameIconProps {
@@ -12,7 +11,7 @@ interface FavoriteGameIconProps {
 }
 
 export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [alert, setAlert] = useState(false);
 
   const [tempFull, setTempFull] = useState(false);
 
@@ -25,7 +24,7 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
 
   async function handleClick(game: Game) {
     if (!isAuthenticated) {
-      setIsOpenModal(true);
+      setAlert(true);
     } else {
       isFavorite ? removeFavoriteGame(game.id) : addFavoriteGame(game);
     }
@@ -33,13 +32,10 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
 
   return (
     <>
-      {isOpenModal && (
-        <Modal onClose={() => setIsOpenModal((isOpenModal) => !isOpenModal)}>
-          <LoginAlertMessage
-            closeModal={() => setIsOpenModal((isOpenModal) => !isOpenModal)}
-          />
-        </Modal>
-      )}
+      <LoginAlertMessage
+        isOpen={alert}
+        closeAlert={() => setAlert((alert) => !alert)}
+      />
       <span
         className={styles.heartIcon}
         onMouseEnter={() => setTempFull(true)}
