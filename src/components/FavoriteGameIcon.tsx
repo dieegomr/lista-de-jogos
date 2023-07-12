@@ -11,7 +11,7 @@ interface FavoriteGameIconProps {
 }
 
 export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
-  const [alert, setAlert] = useState(false);
+  const [loginAlert, setLoginAlert] = useState(false);
 
   const [tempFull, setTempFull] = useState(false);
 
@@ -24,7 +24,7 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
 
   async function handleClick(game: Game) {
     if (!isAuthenticated) {
-      setAlert(true);
+      setLoginAlert(true);
     } else {
       isFavorite ? removeFavoriteGame(game.id) : addFavoriteGame(game);
     }
@@ -33,8 +33,8 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
   return (
     <>
       <LoginAlertMessage
-        isOpen={alert}
-        closeAlert={() => setAlert((alert) => !alert)}
+        isOpen={loginAlert}
+        closeAlert={() => setLoginAlert((loginAlert) => !loginAlert)}
       />
       <span
         className={styles.heartIcon}
