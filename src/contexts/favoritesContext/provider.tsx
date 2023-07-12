@@ -16,7 +16,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
 
   useEffect(
     function () {
@@ -36,9 +36,9 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
           })
           .finally(() => setIsLoading(false));
       }
-      if (user) fetchFavoriteGames();
+      if (isAuthenticated) fetchFavoriteGames();
     },
-    [user]
+    [isAuthenticated, user?.uid]
   );
 
   async function addFavoriteGame(game: Game) {

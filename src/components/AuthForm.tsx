@@ -13,7 +13,6 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [error, setError] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { login, signup } = useAuth();
 
@@ -21,9 +20,7 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
 
   async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
-    setError('');
     try {
-      setIsSubmitting(true);
       if (!email || !password || (!isLoginMode && !passwordConfirm))
         throw new Error('Por favor, preencha e-mail e senha');
 
@@ -37,14 +34,8 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
       if (!isLoginMode && password === passwordConfirm) {
         await signup(email, password);
       }
-
-      setIsSubmitting(false);
     } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      }
-    } finally {
-      setIsSubmitting(false);
+      if (error instanceof Error) setError(error.message);
     }
   }
 

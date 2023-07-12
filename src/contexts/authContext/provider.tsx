@@ -1,8 +1,10 @@
-import { ReactNode, useReducer } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { AuthContext, User } from '.';
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import { auth } from '../../firebase';
 
@@ -10,71 +12,40 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-const initialState = {
-  user: null,
-  isAuthenticated: false,
-};
-
-type ACTIONTYPE = { type: 'login'; payload: User } | { type: 'logout' };
-
-function reducer(
-  state: { user: User | null; isAuthenticated: boolean },
-  action: ACTIONTYPE
-) {
-  switch (action.type) {
-    case 'login':
-      return { ...state, user: action.payload, isAuthenticated: true };
-    case 'logout':
-      return { ...state, user: null, isAuthenticated: false };
-    default:
-      throw new Error('Unknown action');
-  }
-}
-
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [{ user, isAuthenticated }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [user, setUser] = useState<User | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   async function signup(email: string, password: string) {
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        dispatch({
-          type: 'login',
-          payload: { email: user.email as string, uid: user.uid },
-        });
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
+    return createUserWithEmailAndPassword(auth, email, password);
   }
 
   async function login(email: string, password: string) {
-    await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        dispatch({
-          type: 'login',
-          payload: { email: user.email as string, uid: user.uid },
-        });
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
+    return signInWithEmailAndPassword(auth, email, password);
   }
 
   async function logout() {
-    await auth.signOut();
-    dispatch({ type: 'logout' });
+    return signOut(auth);
   }
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser?.email && currentUser.uid)
+        setUser({ email: currentUser.email, uid: currentUser.uid });
+      setIsAuthenticated((isAuthenticated) => !isAuthenticated);
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, login, logout, signup }}
+      value={{
+        user,
+        isAuthenticated,
+        login,
+        logout,
+        signup,
+      }}
     >
       {children}
     </AuthContext.Provider>

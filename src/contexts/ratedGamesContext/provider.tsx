@@ -20,7 +20,7 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
     RATED_GAMES_INITIAL_STATE
   );
 
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
 
   useEffect(
     function () {
@@ -28,7 +28,6 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
         get(child(databaseRef, `rated_games/${user?.uid}`))
           .then((snapshot) => {
             if (snapshot.exists()) {
-              console.log('deveria ter');
               setRatedGames(Object.values(snapshot.val()));
             } else {
               console.log('No data available');
@@ -38,9 +37,9 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
             console.error(error);
           });
       }
-      if (user) fetchRatedGames();
+      if (isAuthenticated) fetchRatedGames();
     },
-    [user]
+    [isAuthenticated, user?.uid]
   );
 
   async function rateGame(ratedGame: RatedGameType) {
