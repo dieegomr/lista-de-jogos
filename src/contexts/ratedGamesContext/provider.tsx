@@ -38,9 +38,9 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
             console.error(error);
           });
       }
-      fetchRatedGames();
+      if (user) fetchRatedGames();
     },
-    [user?.uid]
+    [user]
   );
 
   async function rateGame(ratedGame: RatedGameType) {

@@ -36,9 +36,9 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
           })
           .finally(() => setIsLoading(false));
       }
-      fetchFavoriteGames();
+      if (user) fetchFavoriteGames();
     },
-    [user?.uid]
+    [user]
   );
 
   async function addFavoriteGame(game: Game) {
