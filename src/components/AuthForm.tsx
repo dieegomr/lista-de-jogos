@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './AuthForm.module.css';
 import { useAuth } from '../contexts/authContext/hook';
 import { Link, useNavigate } from 'react-router-dom';
+import ActionButton from './ActionButton';
 
 interface AuthFormProps {
   isLoginMode: boolean;
@@ -80,22 +81,18 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
         <span>{error}</span>
       </div>
       <div className={styles.actions}>
-        <button disabled={isSubmitting} className={styles.btn}>
-          {isLoginMode ? 'Login' : 'Signup'}
-        </button>
-        <button
-          disabled={isSubmitting}
-          className={styles.btn}
+        <ActionButton>{isLoginMode ? 'Login' : 'Sign up'}</ActionButton>
+        <ActionButton
           onClick={() =>
             navigate(`/${isLoginMode ? 'games' : 'auth?mode=login'}`)
           }
         >
           Cancel
-        </button>
+        </ActionButton>
         {isLoginMode && (
-          <div>
+          <div className={styles.signup}>
             <span>Não possui uma conta?</span>
-            <Link to={'?mode=signup'}>Signup</Link>
+            <Link to={'?mode=signup'}>Sign up</Link>
           </div>
         )}
       </div>

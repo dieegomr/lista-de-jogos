@@ -4,6 +4,7 @@
   height: 100vh;
   padding: 5rem 1rem;
   justify-content: center;
+  background: var(--color-medium);
 }
 
 .login {
