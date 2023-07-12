@@ -1,8 +1,15 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .row {
   display: flex;
   flex-direction: column;
   margin-bottom: 0.5rem;
-  min-width: 15rem;
+  width: 15rem;
   gap: 0.3rem;
 }
 

@@ -3,6 +3,7 @@ import styles from './AuthForm.module.css';
 import { useAuth } from '../contexts/authContext/hook';
 import { Link, useNavigate } from 'react-router-dom';
 import ActionButton from './ActionButton';
+import { getErrorMessage } from '../utils/helpers';
 
 interface AuthFormProps {
   isLoginMode: boolean;
@@ -22,10 +23,10 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
     event.preventDefault();
     try {
       if (!email || !password || (!isLoginMode && !passwordConfirm))
-        throw new Error('Por favor, preencha e-mail e senha');
+        throw new Error('Missing field');
 
       if (!isLoginMode && password !== passwordConfirm)
-        throw new Error('Os passwords não conferem');
+        throw new Error('Password mismatch');
 
       if (isLoginMode) {
         await login(email, password);
@@ -35,7 +36,12 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
         await signup(email, password);
       }
     } catch (error) {
-      if (error instanceof Error) setError(error.message);
+      if (error instanceof Error) {
+        const message = getErrorMessage(error.message);
+        setError(message);
+      } else {
+        setError('Um erro inesperado ocorreu');
+      }
     }
   }
 

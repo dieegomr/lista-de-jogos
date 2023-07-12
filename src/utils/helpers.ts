@@ -39,3 +39,35 @@ export function isSpecificHttpStatus(response: Response): boolean {
     response.status === 509
   );
 }
+
+export function getErrorMessage(errorMessage: string): string {
+  const specificErrors = [
+    {
+      originalMessage: 'Firebase: firebaseError (auth/invalid-email).',
+      messageToOutput: 'Formato do email inválido',
+    },
+    {
+      originalMessage:
+        'Firebase: Password should be at least 6 characters (auth/weak-password).',
+      messageToOutput: 'Senha precisa ter no mínimo 6 caracteres',
+    },
+    {
+      originalMessage: 'Firebase: Error (auth/email-already-in-use).',
+      messageToOutput: 'Email já cadastrado',
+    },
+    {
+      originalMessage: 'Password mismatch',
+      messageToOutput: 'Os passwords não conferem',
+    },
+    {
+      originalMessage: 'Missing field',
+      messageToOutput: 'Todos os campos são obrigatórios',
+    },
+  ];
+
+  const message = specificErrors.find(
+    (error) => error.originalMessage === errorMessage
+  );
+
+  return message ? message.messageToOutput : 'Um erro inesperado ocorreu';
+}
