@@ -4,8 +4,8 @@ import { Game } from '../types/Game';
 import HeartIcon from './HeartIcon';
 import { useFavorites } from '../contexts/favoritesContext/hook';
 import { useAuth } from '../contexts/authContext/hook';
-import { useNavigate } from 'react-router-dom';
 import Modal from '../ui/Modal';
+import LoginAlertMessage from './LoginAlertMessage';
 
 interface FavoriteGameIconProps {
   game: Game;
@@ -13,8 +13,6 @@ interface FavoriteGameIconProps {
 
 export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
   const [isOpenModal, setIsOpenModal] = useState(false);
-
-  const navigate = useNavigate();
 
   const [tempFull, setTempFull] = useState(false);
 
@@ -37,11 +35,9 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
     <>
       {isOpenModal && (
         <Modal onClose={() => setIsOpenModal((isOpenModal) => !isOpenModal)}>
-          <p>Você precisa estar logado para realizar essa ação</p>
-          <button onClick={() => navigate('/auth?mode=login')}>Logar</button>
-          <button onClick={() => setIsOpenModal((isOpenModal) => !isOpenModal)}>
-            Cancelar
-          </button>
+          <LoginAlertMessage
+            closeModal={() => setIsOpenModal((isOpenModal) => !isOpenModal)}
+          />
         </Modal>
       )}
       <span
