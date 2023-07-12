@@ -24,17 +24,16 @@ export default function StarRating({ maxRating = 4, gameId }: StarRatingProps) {
   const navigate = useNavigate();
   const { rateGame, getRate } = useRatedGames();
   const rate = getRate(gameId);
-  const [rating, setRating] = useState(rate);
+  // const [rating, setRating] = useState(rate);
   const [tempRating, setTempRating] = useState(0);
 
   function handleRating(rate: number) {
     if (!isAuthenticated) {
       alert('voce precisa estar logado');
-      navigate('/auth');
+      navigate('/auth?mode=login');
     } else {
       const ratedGame = { gameId: gameId, rate: rate };
       rateGame(ratedGame);
-      setRating(rate);
     }
   }
 
@@ -45,7 +44,7 @@ export default function StarRating({ maxRating = 4, gameId }: StarRatingProps) {
           Array.from({ length: maxRating }, (_, i) => (
             <Star
               key={i}
-              full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
+              full={tempRating ? tempRating >= i + 1 : rate >= i + 1}
               onRate={() => handleRating(i + 1)}
               onHoverIn={() => setTempRating(i + 1)}
               onHoverOut={() => setTempRating(0)}

@@ -1,5 +1,5 @@
 import { ReactNode, useReducer } from 'react';
-import { AuthContext } from '.';
+import { AuthContext, User } from '.';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -15,10 +15,10 @@ const initialState = {
   isAuthenticated: false,
 };
 
-type ACTIONTYPE = { type: 'login'; payload: string } | { type: 'logout' };
+type ACTIONTYPE = { type: 'login'; payload: User } | { type: 'logout' };
 
 function reducer(
-  state: { user: string | null; isAuthenticated: boolean },
+  state: { user: User | null; isAuthenticated: boolean },
   action: ACTIONTYPE
 ) {
   switch (action.type) {
@@ -38,16 +38,37 @@ export function AuthProvider({ children }: AuthProviderProps) {
   );
 
   async function signup(email: string, password: string) {
-    await createUserWithEmailAndPassword(auth, email, password);
-    dispatch({ type: 'login', payload: email });
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        dispatch({
+          type: 'login',
+          payload: { email: user.email as string, uid: user.uid },
+        });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   }
 
   async function login(email: string, password: string) {
-    await signInWithEmailAndPassword(auth, email, password);
-    dispatch({ type: 'login', payload: email });
+    await signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        dispatch({
+          type: 'login',
+          payload: { email: user.email as string, uid: user.uid },
+        });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   }
 
-  function logout() {
+  async function logout() {
+    await auth.signOut();
     dispatch({ type: 'logout' });
   }
 

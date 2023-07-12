@@ -25,7 +25,7 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
   async function handleClick(game: Game) {
     if (!isAuthenticated) {
       alert('voce precisa estar logado');
-      navigate('/auth');
+      navigate('/auth?mode=login');
     } else {
       isFavorite ? removeFavoriteGame(game.id) : addFavoriteGame(game);
     }

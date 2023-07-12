@@ -5,6 +5,7 @@ interface RatedGamesContextType {
   ratedGames: RatedGameType[];
   rateGame: (ratedGame: RatedGameType) => void;
   getRate: (gameId: number) => number;
+  resetRatedGames: () => void;
 }
 
 export const FavoritesContext = createContext<RatedGamesContextType>(
