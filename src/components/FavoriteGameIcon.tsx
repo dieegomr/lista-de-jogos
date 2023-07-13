@@ -13,14 +13,14 @@ interface FavoriteGameIconProps {
 export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
   const [loginAlert, setLoginAlert] = useState(false);
 
-  const [tempFull, setTempFull] = useState(false);
-
   const { favorites, addFavoriteGame, removeFavoriteGame } = useFavorites();
   const { isAuthenticated } = useAuth();
 
   const isFavorite = favorites
     .map((favoriteGame) => favoriteGame.id)
     .includes(game.id);
+
+  const [fillHeartIcon, setFillHeartIcon] = useState(isFavorite);
 
   async function handleClick(game: Game) {
     if (!isAuthenticated) {
@@ -38,15 +38,13 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
       />
       <span
         className={styles.heartIcon}
-        onMouseEnter={() => setTempFull(true)}
-        onMouseLeave={() => setTempFull(false)}
+        onMouseEnter={() => setFillHeartIcon(!isFavorite)}
+        onMouseLeave={() => setFillHeartIcon(isFavorite)}
         onClick={() => handleClick(game)}
         role="button"
       >
-        {isAuthenticated && (
-          <HeartIcon full={isFavorite ? isFavorite : tempFull} />
-        )}
-        {!isAuthenticated && <HeartIcon full={tempFull} />}
+        {isAuthenticated && <HeartIcon full={fillHeartIcon} />}
+        {!isAuthenticated && <HeartIcon full={fillHeartIcon} />}
       </span>
     </>
   );
