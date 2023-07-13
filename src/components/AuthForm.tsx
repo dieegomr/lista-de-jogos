@@ -23,6 +23,7 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
   async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
+    setError('');
     try {
       if (!email || !password || (!isLoginMode && !passwordConfirm))
         throw new Error('Missing field');

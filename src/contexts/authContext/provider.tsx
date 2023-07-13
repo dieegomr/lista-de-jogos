@@ -25,14 +25,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   async function logout() {
+    setIsAuthenticated(false);
     return signOut(auth);
   }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser?.email && currentUser.uid)
+      if (currentUser?.email && currentUser.uid) {
         setUser({ email: currentUser.email, uid: currentUser.uid });
-      setIsAuthenticated((isAuthenticated) => !isAuthenticated);
+        setIsAuthenticated(true);
+      }
     });
     return () => unsubscribe();
   }, []);
