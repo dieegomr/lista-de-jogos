@@ -62,6 +62,10 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
     setFavorites(FAVORITES_INITIAL_STATE);
   }
 
+  function isGameFavorite(gameId: number) {
+    return favorites.map((favoriteGame) => favoriteGame.id).includes(gameId);
+  }
+
   return (
     <FavoritesContext.Provider
       value={{
@@ -69,6 +73,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
         addFavoriteGame,
         removeFavoriteGame,
         resetFavoriteGames,
+        isGameFavorite,
       }}
     >
       {children}

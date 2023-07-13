@@ -6,6 +6,7 @@ interface FavoritesContextType {
   addFavoriteGame: (game: Game) => void;
   removeFavoriteGame: (id: number) => void;
   resetFavoriteGames: () => void;
+  isGameFavorite: (gameId: number) => boolean;
 }
 
 export const FavoritesContext = createContext<FavoritesContextType>(
