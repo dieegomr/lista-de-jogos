@@ -4,8 +4,8 @@ import FavoriteGameIcon from './FavoriteGameIcon';
 import styles from './GameItem.module.css';
 import StarRating from './StarRating';
 
-export default function GameItem({ game }: GameItemProps) {
-  const { thumbnail, title, short_description: description, genre } = game;
+export default function GameItem({ game, children }: GameItemProps) {
+  const { thumbnail, title, genre } = game;
 
   return (
     <li className={styles.game}>
@@ -27,7 +27,7 @@ export default function GameItem({ game }: GameItemProps) {
       </ActionsContainer>
       <div className={styles.body}>
         <h2 className={styles.title}>{title}</h2>
-        <p className={styles.description}>{description}</p>
+        <div className={styles.description}>{children}</div>
       </div>
     </li>
   );

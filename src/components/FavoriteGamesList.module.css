@@ -1,7 +1,55 @@
-.list {
+.favoriteGamesList {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  color: var(--color-darkest);
+  justify-content: center;
+  gap: 1.3rem;
+}
+
+.list {
+  display: grid;
   gap: 1rem;
+  grid-template-columns: 1fr;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  min-width: 17rem;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  width: 80%;
+}
+
+.btn {
+  width: 10rem;
+  height: 2rem;
+}
+
+@media screen and (min-width: 650px) {
+  .list {
+    grid-template-columns: 1fr 1fr;
+    margin: 0rem auto;
+    gap: 1.5rem;
+  }
+
+  .header {
+    align-self: center;
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .list {
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0rem 4rem;
+    gap: 2rem;
+  }
+
+  .header {
+    align-self: center;
+    width: 87%;
+  }
 }

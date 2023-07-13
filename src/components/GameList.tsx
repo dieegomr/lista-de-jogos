@@ -37,7 +37,9 @@ export default function GameList() {
       {!isLoading && !error && (
         <ul className={styles.list}>
           {gamesToRender.map((game) => (
-            <GameItem game={game} key={game.id} />
+            <GameItem game={game} key={game.id}>
+              <p>{game.short_description}</p>
+            </GameItem>
           ))}
         </ul>
       )}

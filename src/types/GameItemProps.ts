@@ -1,15 +1,7 @@
+import { ReactNode } from 'react';
+import { Game } from './Game';
+
 export type GameItemProps = {
-  game: {
-    id: number;
-    title: string;
-    thumbnail: string;
-    short_description: string;
-    game_url: string;
-    genre: string;
-    platform: string;
-    publisher: string;
-    developer: string;
-    release_date: string;
-    freetogame_profile_url: string;
-  };
+  game: Game;
+  children: ReactNode;
 };
