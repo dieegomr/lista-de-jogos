@@ -9,7 +9,7 @@ interface FavoriteGameItemProps {
 
 export default function FavoriteGameItem({ game }: FavoriteGameItemProps) {
   return (
-    <li className={styles.game} key={game.id}>
+    <li className={styles.game}>
       <div className={styles.image}>
         <img src={game.thumbnail} />
       </div>

@@ -12,7 +12,7 @@ export default function FavoriteGamesList() {
   return (
     <ul className={styles.list}>
       {favorites.map((game) => (
-        <FavoriteGameItem game={game} />
+        <FavoriteGameItem game={game} key={game.id} />
       ))}
     </ul>
   );
