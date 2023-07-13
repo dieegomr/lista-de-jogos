@@ -13,14 +13,13 @@ interface FavoriteGameIconProps {
 export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
   const [loginAlert, setLoginAlert] = useState(false);
 
-  const { favorites, addFavoriteGame, removeFavoriteGame } = useFavorites();
+  const { addFavoriteGame, removeFavoriteGame, isGameFavorite } =
+    useFavorites();
   const { isAuthenticated } = useAuth();
 
-  const isFavorite = favorites
-    .map((favoriteGame) => favoriteGame.id)
-    .includes(game.id);
+  const isFavorite = isGameFavorite(game.id);
 
-  const [fillHeartIcon, setFillHeartIcon] = useState(isFavorite);
+  const [tempFull, setTempFull] = useState(false);
 
   async function handleClick(game: Game) {
     if (!isAuthenticated) {
@@ -38,13 +37,17 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
       />
       <span
         className={styles.heartIcon}
-        onMouseEnter={() => setFillHeartIcon(!isFavorite)}
-        onMouseLeave={() => setFillHeartIcon(isFavorite)}
+        onMouseEnter={() => setTempFull(true)}
+        onMouseLeave={() => setTempFull(false)}
         onClick={() => handleClick(game)}
         role="button"
       >
-        {isAuthenticated && <HeartIcon full={fillHeartIcon} />}
-        {!isAuthenticated && <HeartIcon full={fillHeartIcon} />}
+        {isAuthenticated && (
+          <HeartIcon full={isFavorite ? isFavorite !== tempFull : tempFull} />
+        )}
+        {!isAuthenticated && (
+          <HeartIcon full={isFavorite ? isFavorite !== tempFull : tempFull} />
+        )}
       </span>
     </>
   );
