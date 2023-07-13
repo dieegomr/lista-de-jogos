@@ -14,6 +14,7 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const { login, signup } = useAuth();
 
@@ -21,6 +22,7 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
 
   async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
+    setIsLoading(true);
     try {
       if (!email || !password || (!isLoginMode && !passwordConfirm))
         throw new Error('Missing field');
@@ -42,6 +44,8 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
       } else {
         setError('Um erro inesperado ocorreu');
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -78,14 +82,16 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
         <span>{error}</span>
       </div>
       <div className={styles.actions}>
-        <ActionButton>{isLoginMode ? 'Login' : 'Sign up'}</ActionButton>
-        <ActionButton
+        <button disabled={isLoading}>
+          {isLoginMode ? 'Login' : 'Sign up'}
+        </button>
+        <button
           onClick={() =>
             navigate(`/${isLoginMode ? 'games' : 'auth?mode=login'}`)
           }
         >
           Cancel
-        </ActionButton>
+        </button>
         {isLoginMode && (
           <div className={styles.signup}>
             <span>Não possui uma conta?</span>
