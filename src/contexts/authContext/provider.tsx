@@ -26,6 +26,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function logout() {
     setIsAuthenticated(false);
+    setUser(null);
     return signOut(auth);
   }
 
@@ -38,6 +39,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     });
     return () => unsubscribe();
   }, []);
+
+  console.log('user', user);
+  console.log('authenticated', isAuthenticated);
 
   return (
     <AuthContext.Provider
