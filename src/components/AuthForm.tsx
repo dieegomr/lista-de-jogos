@@ -1,6 +1,7 @@
 import { useAuthForm } from '../hooks/useAuthForm';
 import styles from './AuthForm.module.css';
 import { Link, useNavigate } from 'react-router-dom';
+import FormInput from './FormInput';
 
 interface AuthFormProps {
   isLoginMode: boolean;
@@ -20,32 +21,25 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <div className={styles.row}>
-        <label htmlFor="email">Email address</label>
-        <input
-          type="email"
-          id="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-
-      <div className={styles.row}>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
+      <FormInput
+        id="email"
+        label="Email address"
+        type="email"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <FormInput
+        id="password"
+        label="Password"
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
       {!isLoginMode && (
-        <div className={styles.row}>
-          <label htmlFor="passwordConfirm">Confirm Password</label>
-          <input
-            type="password"
-            id="passwordConfirm"
-            onChange={(e) => setPasswordConfirm(e.target.value)}
-          />
-        </div>
+        <FormInput
+          id="passwordConfirm"
+          label="Confirm Password"
+          type="password"
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+        />
       )}
       <div className={styles.messageBox}>
         <span>{error}</span>
