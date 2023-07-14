@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 
-.heartIcon.shake {
+.heartIcon.shakeAnimation {
   animation: shake 0.3s ease-in-out infinite;
 }
 
@@ -27,7 +27,7 @@
   background-repeat: no-repeat;
 }
 
-.heartIcon.animate::before {
+.heartIcon.vanishAnimation::before {
   top: -40%;
   background-image: radial-gradient(circle, red 20%, transparent 30%),
     radial-gradient(circle, transparent 20%, red 20%, transparent 30%),
@@ -56,7 +56,7 @@
   }
 }
 
-.heartIcon.animate::after {
+.heartIcon.vanishAnimation::after {
   bottom: -60%;
   background-image: radial-gradient(circle, red 20%, transparent 20%),
     radial-gradient(circle, transparent 10%, red 15%, transparent 20%),
