@@ -39,6 +39,7 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
       }
     } catch (error) {
       if (error instanceof Error) {
+        console.log(error.message);
         const message = getErrorMessage(error.message);
         setError(message);
       } else {

@@ -63,6 +63,14 @@ export function getErrorMessage(errorMessage: string): string {
       originalMessage: 'Missing field',
       messageToOutput: 'Todos os campos são obrigatórios',
     },
+    {
+      originalMessage: 'Firebase: Error (auth/wrong-password).',
+      messageToOutput: 'Email ou senha inválido',
+    },
+    {
+      originalMessage: 'Firebase: Error (auth/user-not-found).',
+      messageToOutput: 'Email ou senha inválido',
+    },
   ];
 
   const message = specificErrors.find(
