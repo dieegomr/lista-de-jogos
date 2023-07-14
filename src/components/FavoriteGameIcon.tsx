@@ -12,8 +12,8 @@ interface FavoriteGameIconProps {
 
 export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
   const [loginAlert, setLoginAlert] = useState(false);
-  const [animate, setAnimate] = useState(false);
-  const [shake, setShake] = useState(false);
+  const [vanishAnimation, setVanishAnimation] = useState(false);
+  const [shakeAnimation, setShakeAnimation] = useState(false);
 
   const { addFavoriteGame, removeFavoriteGame, isGameFavorite } =
     useFavorites();
@@ -29,14 +29,14 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
     } else {
       if (!isFavorite) {
         addFavoriteGame(game);
-        setShake(true);
+        setShakeAnimation(true);
         setTimeout(() => {
-          setShake(false);
+          setShakeAnimation(false);
         }, 600);
       } else {
-        setAnimate(true);
+        setVanishAnimation(true);
         setTimeout(() => {
-          setAnimate(false);
+          setVanishAnimation(false);
         }, 600);
         setTimeout(() => {
           removeFavoriteGame(game.id);
@@ -52,9 +52,9 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
         closeAlert={() => setLoginAlert((loginAlert) => !loginAlert)}
       />
       <span
-        className={`${styles.heartIcon} ${animate ? styles.animate : ''} ${
-          shake ? styles.shake : ''
-        }`}
+        className={`${styles.heartIcon} ${
+          vanishAnimation ? styles.vanishAnimation : ''
+        } ${shakeAnimation ? styles.shakeAnimation : ''}`}
         onMouseEnter={() => setTempFull(true)}
         onMouseLeave={() => setTempFull(false)}
         onClick={() => handleClick(game)}
