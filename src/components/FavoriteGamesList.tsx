@@ -20,10 +20,10 @@ export default function FavoriteGamesList() {
   const { filteredGames } = useFilter(searchedGames);
   const sortedGames = useSort(filteredGames);
 
-  if (sortedGames && sortedGames.length === 0)
-    return <ErrorMessage message="Nenhum jogo encontrado 😕" />;
-
   const gamesToRender = !sortedGames ? filteredGames : sortedGames;
+
+  if (!gamesToRender.length)
+    return <ErrorMessage message="Nenhum jogo encontrado 😕" />;
 
   return (
     <div className={styles.favoriteGamesList}>
