@@ -9,6 +9,7 @@ import { SearchProvider } from './contexts/searchContext/provider';
 import { FavoritesProvider } from './contexts/favoritesContext/provider';
 import FavoriteGamesList from './components/FavoriteGamesList';
 import { RatedGamesProvider } from './contexts/ratedGamesContext/provider';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
                       }
                     />
                   </Route>
+                  <Route path="*" element={<NotFoundPage />} />
                   <Route></Route>
                 </Routes>
               </BrowserRouter>
