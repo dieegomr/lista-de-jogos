@@ -20,7 +20,7 @@ export function useFavoriteGameIconState(
       setAuthenticationAlert(true);
     } else {
       if (!isFavorite) {
-        addFavoriteGame(game);
+        addFavoriteGame(game.id);
         setShakeAnimation(true);
         setTimeout(() => {
           setShakeAnimation(false);

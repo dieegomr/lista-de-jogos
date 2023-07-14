@@ -8,13 +8,15 @@ import SortBy from './SortBy';
 import { useSearch } from '../hooks/useSearch';
 import { useFilter } from '../hooks/useFilter';
 import { useSort } from '../hooks/useSort';
+import { useGames } from '../contexts/gameContext/hook';
 
 export default function FavoriteGamesList() {
-  const { favorites } = useFavorites();
+  const { favorites, error } = useFavorites();
+  const { games } = useGames();
 
-  const error = false;
+  const favoriteGames = games.filter((game) => favorites.includes(game.id));
 
-  const { searchedGames } = useSearch(favorites);
+  const { searchedGames } = useSearch(favoriteGames);
   const { filteredGames } = useFilter(searchedGames);
   const { sortedGames } = useSort(filteredGames);
 
