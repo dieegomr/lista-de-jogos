@@ -17,3 +17,8 @@
 .actionBtn:active {
   transform: translateY(1px);
 }
+
+.inative {
+  opacity: 0.5;
+  pointer-events: none;
+}

@@ -4,11 +4,23 @@ import styles from './ActionButton.module.css';
 interface ActionButtonProps
   extends React.HtmlHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  isLoading?: boolean;
+  type?: string;
 }
 
-export default function ActionButton({ children, ...rest }: ActionButtonProps) {
+export default function ActionButton({
+  children,
+  isLoading = false,
+  type = '',
+  ...rest
+}: ActionButtonProps) {
   return (
-    <button className={styles.actionBtn} {...rest}>
+    <button
+      className={`${styles.actionBtn} ${isLoading ? styles['inative'] : ''} ${
+        styles[type]
+      }`}
+      {...rest}
+    >
       {children}
     </button>
   );
