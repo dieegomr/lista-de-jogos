@@ -21,8 +21,8 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
   useEffect(
     function () {
       async function fetchFavoriteGames() {
-        setIsLoading(true);
-        setError('');
+        // setIsLoading(true);
+        // setError('');
         get(child(databaseRef, `favorites/${user?.uid}`))
           .then((snapshot) => {
             if (snapshot.exists()) {
@@ -33,8 +33,8 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
           })
           .catch((error) => {
             console.error(error);
-          })
-          .finally(() => setIsLoading(false));
+          });
+        // .finally(() => setIsLoading(false));
       }
       if (isAuthenticated) fetchFavoriteGames();
     },
