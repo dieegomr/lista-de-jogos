@@ -6,8 +6,14 @@ export function useSort(gamesToSort: Game[]) {
   const [searchParams] = useSearchParams();
   const { ratedGames } = useRatedGames();
 
-  const sortBy = searchParams.get('sortBy') || 'rate-desc';
-  const [field, direction] = sortBy.split('-') as ['rate', 'asc' | 'desc'];
+  const sortBy = searchParams.get('sortBy') || 'rate-no';
+
+  const [field, direction] = sortBy.split('-') as [
+    'rate',
+    'asc' | 'desc' | 'no'
+  ];
+
+  if (direction === 'no') return undefined;
 
   const gamesWithRatings = gamesToSort.map((game) => {
     const isRated = ratedGames.find(
@@ -30,5 +36,5 @@ export function useSort(gamesToSort: Game[]) {
     }
   });
 
-  return { sortedGames };
+  return sortedGames;
 }

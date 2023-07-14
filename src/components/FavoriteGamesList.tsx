@@ -18,10 +18,12 @@ export default function FavoriteGamesList() {
 
   const { searchedGames } = useSearch(favoriteGames);
   const { filteredGames } = useFilter(searchedGames);
-  const { sortedGames } = useSort(filteredGames);
+  const sortedGames = useSort(filteredGames);
 
-  if (!sortedGames.length)
+  if (sortedGames && sortedGames.length === 0)
     return <ErrorMessage message="Nenhum jogo encontrado 😕" />;
+
+  const gamesToRender = !sortedGames ? filteredGames : sortedGames;
 
   return (
     <div className={styles.favoriteGamesList}>
@@ -34,7 +36,7 @@ export default function FavoriteGamesList() {
         </div>
       )}
       <ul className={styles.list}>
-        {sortedGames.map((game) => (
+        {gamesToRender.map((game) => (
           <GameItem game={game} key={game.id}>
             <a>
               Play Now

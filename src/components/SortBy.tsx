@@ -9,33 +9,37 @@ export default function SortBy() {
   const [searchParams, setSearchParams] = useSearchParams();
   const sortBy = searchParams.get('sortBy');
 
+  function handleNoSort() {
+    searchParams.set('sortBy', 'rate-desc');
+    setSearchParams(searchParams);
+  }
+
   function handleSortAsc() {
-    searchParams.set('sortBy', 'rate-asc');
+    searchParams.set('sortBy', 'rate-no');
     setSearchParams(searchParams);
   }
 
   function handleSortDesc() {
-    searchParams.set('sortBy', 'rate-desc');
+    searchParams.set('sortBy', 'rate-asc');
     setSearchParams(searchParams);
   }
 
   return (
     <>
-      {!sortBy && isAuthenticated && (
+      {isAuthenticated && !sortBy && (
+        <ActionButton onClick={handleNoSort}>No Sorting</ActionButton>
+      )}
+      {isAuthenticated && sortBy === 'rate-no' && (
+        <ActionButton onClick={handleNoSort}>No Sorting</ActionButton>
+      )}
+      {isAuthenticated && sortBy === 'rate-asc' && (
         <ActionButton onClick={handleSortAsc}>
-          Sort By <BiSolidStar size={17} /> <BiSortDown size={20} />
+          Sort By <BiSolidStar size={17} /> <BiSortUp size={20} />
         </ActionButton>
       )}
-      {(!sortBy && isAuthenticated) ||
-        (sortBy === 'rate-desc' && isAuthenticated && (
-          <ActionButton onClick={handleSortAsc}>
-            Sort By <BiSolidStar size={17} /> <BiSortDown size={20} />
-          </ActionButton>
-        ))}
-      {sortBy === 'rate-asc' && isAuthenticated && (
+      {isAuthenticated && sortBy === 'rate-desc' && (
         <ActionButton onClick={handleSortDesc}>
-          Sort By <BiSolidStar size={17} />
-          <BiSortUp size={20} />
+          Sort By <BiSolidStar size={17} /> <BiSortDown size={20} />
         </ActionButton>
       )}
     </>

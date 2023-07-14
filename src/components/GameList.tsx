@@ -15,9 +15,10 @@ export default function GameList() {
 
   const { searchedGames } = useSearch(games);
   const { filteredGames } = useFilter(searchedGames);
-  const { sortedGames } = useSort(filteredGames);
+  const sortedGames = useSort(filteredGames);
 
-  const gamesToRender = isAuthenticated ? sortedGames : filteredGames;
+  const gamesToRender =
+    !isAuthenticated || !sortedGames ? filteredGames : sortedGames;
 
   if (!isLoading && !error && !gamesToRender.length)
     return <ErrorMessage message="Nenhum jogo encontrado 😕" />;
