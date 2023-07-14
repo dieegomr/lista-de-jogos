@@ -8,10 +8,16 @@ interface FavoritesProviderProps {
   children: ReactNode;
 }
 
-const FAVORITES_INITIAL_STATE = [] as number[];
+interface FavoriteGames {
+  gameId: number;
+}
+
+const FAVORITES_INITIAL_STATE = [] as FavoriteGames[];
 
 export function FavoritesProvider({ children }: FavoritesProviderProps) {
-  const [favorites, setFavorites] = useState<number[]>(FAVORITES_INITIAL_STATE);
+  const [favorites, setFavorites] = useState<FavoriteGames[]>(
+    FAVORITES_INITIAL_STATE
+  );
   const [error, setError] = useState('');
 
   const { user, isAuthenticated } = useAuth();
@@ -37,18 +43,20 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
     [isAuthenticated, user?.uid]
   );
 
+  console.log(favorites);
+
   async function addFavoriteGame(gameId: number) {
     set(ref(database, `favorites/${user?.uid}/${gameId}`), {
       gameId: gameId,
     });
 
-    setFavorites((favorites) => [...favorites, gameId]);
+    setFavorites((favorites) => [...favorites, { gameId }]);
   }
 
   async function removeFavoriteGame(id: number) {
     remove(ref(database, `favorites/${user?.uid}/${id}`));
     setFavorites((favorites) =>
-      favorites.filter((favoriteGameId) => favoriteGameId !== id)
+      favorites.filter((favoriteGame) => favoriteGame.gameId !== id)
     );
   }
 
@@ -57,7 +65,10 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
   }
 
   function isGameFavorite(gameId: number) {
-    return favorites.map((favoriteGameId) => favoriteGameId).includes(gameId);
+    const foundGame = favorites.find(
+      (favoriteGame) => favoriteGame.gameId === gameId
+    );
+    return !!foundGame;
   }
 
   return (
