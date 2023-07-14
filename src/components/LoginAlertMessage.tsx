@@ -26,10 +26,16 @@ export default function LoginAlertMessage({
             Você precisa estar logado para realizar essa ação!
           </span>
           <div className={styles.actions}>
-            <ActionButton onClick={() => navigate('/auth?mode=login')}>
+            <ActionButton
+              className={styles.login}
+              onClick={() => navigate('/auth?mode=login')}
+              type="authBtn"
+            >
               Login
             </ActionButton>
-            <ActionButton onClick={closeAlert}>Cancel</ActionButton>
+            <ActionButton className={styles.cancelLogin} onClick={closeAlert}>
+              Cancel
+            </ActionButton>
           </div>
         </div>
       </Modal>

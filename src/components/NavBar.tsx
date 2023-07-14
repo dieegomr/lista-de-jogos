@@ -30,7 +30,7 @@ export default function NavBar() {
       <div className={styles.top}>
         <Logo />
         <div className={styles.btn}>
-          <ActionButton onClick={handleAuth}>
+          <ActionButton type="authBtn" onClick={handleAuth}>
             {isAuthenticated ? 'Logout' : 'Login'}
           </ActionButton>
         </div>

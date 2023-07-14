@@ -10,15 +10,16 @@ interface ActionButtonProps
 
 export default function ActionButton({
   children,
+  className = '',
   isLoading = false,
   type = '',
   ...rest
 }: ActionButtonProps) {
   return (
     <button
-      className={`${styles.actionBtn} ${isLoading ? styles['inative'] : ''} ${
-        styles[type]
-      }`}
+      className={`${className} ${styles.actionBtn} ${
+        isLoading ? styles['inative'] : ''
+      } ${styles[type]}`}
       {...rest}
     >
       {children}

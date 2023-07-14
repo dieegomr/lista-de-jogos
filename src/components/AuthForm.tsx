@@ -46,7 +46,7 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
         <span>{error}</span>
       </div>
       <div className={styles.actions}>
-        <ActionButton isLoading={isLoading}>
+        <ActionButton isLoading={isLoading} type="authBtn">
           {isLoginMode ? 'Login' : 'Sign up'}
         </ActionButton>
         <ActionButton
