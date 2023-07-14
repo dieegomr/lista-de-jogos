@@ -1,54 +1,22 @@
-import { useState } from 'react';
+import { useAuthForm } from '../hooks/useAuthForm';
 import styles from './AuthForm.module.css';
-import { useAuth } from '../contexts/authContext/hook';
 import { Link, useNavigate } from 'react-router-dom';
-import { getErrorMessage } from '../utils/helpers';
 
 interface AuthFormProps {
   isLoginMode: boolean;
 }
 
 export default function AuthForm({ isLoginMode }: AuthFormProps) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  const { login, signup } = useAuth();
+  const {
+    handleSubmit,
+    setEmail,
+    setPassword,
+    setPasswordConfirm,
+    error,
+    isLoading,
+  } = useAuthForm(isLoginMode);
 
   const navigate = useNavigate();
-
-  async function handleSubmit(event: React.SyntheticEvent) {
-    event.preventDefault();
-    setIsLoading(true);
-    setError('');
-    try {
-      if (!email || !password || (!isLoginMode && !passwordConfirm))
-        throw new Error('Missing field');
-
-      if (!isLoginMode && password !== passwordConfirm)
-        throw new Error('Password mismatch');
-
-      if (isLoginMode) {
-        await login(email, password);
-      }
-
-      if (!isLoginMode && password === passwordConfirm) {
-        await signup(email, password);
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        console.log(error.message);
-        const message = getErrorMessage(error.message);
-        setError(message);
-      } else {
-        setError('Um erro inesperado ocorreu');
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
