@@ -13,8 +13,8 @@ const FAVORITES_INITIAL_STATE = [] as Game[];
 
 export function FavoritesProvider({ children }: FavoritesProviderProps) {
   const [favorites, setFavorites] = useState<Game[]>(FAVORITES_INITIAL_STATE);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState('');
 
   const { user, isAuthenticated } = useAuth();
 

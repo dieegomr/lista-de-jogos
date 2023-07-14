@@ -1,4 +1,4 @@
 export type StartFetchTimeout = {
-  fetchTimeoutId: number;
+  fetchTimeoutId: NodeJS.Timeout;
   controller: AbortController;
 };
