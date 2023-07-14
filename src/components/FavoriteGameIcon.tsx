@@ -12,6 +12,8 @@ interface FavoriteGameIconProps {
 
 export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
   const [loginAlert, setLoginAlert] = useState(false);
+  const [animate, setAnimate] = useState(false);
+  const [shake, setShake] = useState(false);
 
   const { addFavoriteGame, removeFavoriteGame, isGameFavorite } =
     useFavorites();
@@ -25,7 +27,21 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
     if (!isAuthenticated) {
       setLoginAlert(true);
     } else {
-      isFavorite ? removeFavoriteGame(game.id) : addFavoriteGame(game);
+      if (!isFavorite) {
+        addFavoriteGame(game);
+        setShake(true);
+        setTimeout(() => {
+          setShake(false);
+        }, 600);
+      } else {
+        setAnimate(true);
+        setTimeout(() => {
+          setAnimate(false);
+        }, 600);
+        setTimeout(() => {
+          removeFavoriteGame(game.id);
+        }, 300);
+      }
     }
   }
 
@@ -36,15 +52,15 @@ export default function FavoriteGameIcon({ game }: FavoriteGameIconProps) {
         closeAlert={() => setLoginAlert((loginAlert) => !loginAlert)}
       />
       <span
-        className={styles.heartIcon}
+        className={`${styles.heartIcon} ${animate ? styles.animate : ''} ${
+          shake ? styles.shake : ''
+        }`}
         onMouseEnter={() => setTempFull(true)}
         onMouseLeave={() => setTempFull(false)}
         onClick={() => handleClick(game)}
         role="button"
       >
-        {isAuthenticated && (
-          <HeartIcon full={isFavorite ? isFavorite !== tempFull : tempFull} />
-        )}
+        {isAuthenticated && <HeartIcon full={isFavorite} />}
         {!isAuthenticated && (
           <HeartIcon full={isFavorite ? isFavorite !== tempFull : tempFull} />
         )}
