@@ -15,3 +15,8 @@
   background: var(--color-medium);
   color: var(--color-dark);
 }
+
+.row input:focus {
+  outline: none;
+  opacity: 0.93;
+}
