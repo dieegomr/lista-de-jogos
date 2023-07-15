@@ -3,6 +3,7 @@ import styles from './AuthForm.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import FormInput from './FormInput';
 import ActionButton from './ActionButton';
+import { MouseEventHandler } from 'react';
 
 interface AuthFormProps {
   isLoginMode: boolean;
@@ -20,24 +21,28 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
 
   const navigate = useNavigate();
 
+  function handleCancel(event: React.SyntheticEvent) {
+    event.preventDefault();
+    navigate(`/${isLoginMode ? 'games' : 'auth?mode=login'}`);
+  }
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <FormInput
         id="email"
-        label="Email address"
+        label="Email"
         type="email"
         onChange={(e) => setEmail(e.target.value)}
       />
       <FormInput
         id="password"
-        label="Password"
+        label="Senha"
         type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
       {!isLoginMode && (
         <FormInput
           id="passwordConfirm"
-          label="Confirm Password"
+          label="Confirmar senha"
           type="password"
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
@@ -49,13 +54,8 @@ export default function AuthForm({ isLoginMode }: AuthFormProps) {
         <ActionButton isLoading={isLoading} type="authBtn">
           {isLoginMode ? 'Login' : 'Sign up'}
         </ActionButton>
-        <ActionButton
-          onClick={() =>
-            navigate(`/${isLoginMode ? 'games' : 'auth?mode=login'}`)
-          }
-          isLoading={isLoading}
-        >
-          Cancel
+        <ActionButton onClick={handleCancel} isLoading={isLoading}>
+          Cancelar
         </ActionButton>
         {isLoginMode && (
           <div className={styles.signup}>
