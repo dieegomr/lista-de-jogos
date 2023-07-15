@@ -5,6 +5,18 @@
   gap: 1.3rem;
 }
 
+.favoriteGamesList .btn {
+  background: var(--color-medium);
+  width: 10rem;
+  height: 2rem;
+}
+
+.favoriteGamesList .btn:link,
+.favoriteGamesList .btn:visited {
+  color: var(--color-medium);
+  text-decoration: none;
+}
+
 .list {
   display: grid;
   gap: 1rem;
