@@ -14,6 +14,12 @@ export interface RatedGameType {
 }
 
 const RATED_GAMES_INITIAL_STATE = [] as RatedGameType[];
+const SET_RATE_ERROR_MESSAGE =
+  'Não foi possível dar a nota para esse jogo. Tente novamente mais tarde';
+const UPDATE_RATE_ERROR_MESSAGE =
+  'Não foi possível dar a nota para esse jogo. Tente novamente mais tarde';
+const GET_RATED_GAMES_ERROR_MESSAGE =
+  'Algo inesperado ocorreu, tente recarregar a página';
 
 export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
   const [ratedGames, setRatedGames] = useState<RatedGameType[]>(
@@ -33,8 +39,8 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
               setRatedGames(Object.values(snapshot.val()));
             }
           })
-          .catch((error) => {
-            console.error(error);
+          .catch(() => {
+            setError(GET_RATED_GAMES_ERROR_MESSAGE);
           });
       }
       if (isAuthenticated) fetchRatedGames();
@@ -55,9 +61,7 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
           setRatedGames((ratedGames) => [...ratedGames, ratedGame]);
         })
         .catch(() => {
-          setError(
-            'Não foi possível dar a nota para esse jogo. Tente novamente mais tarde'
-          );
+          setError(SET_RATE_ERROR_MESSAGE);
         });
     } else {
       update(
@@ -75,9 +79,7 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
           setRatedGames(updatedRatedMovie);
         })
         .catch(() => {
-          setError(
-            'Não foi possível dar a nota para esse jogo. Tente novamente mais tarde'
-          );
+          setError(UPDATE_RATE_ERROR_MESSAGE);
         });
     }
   }

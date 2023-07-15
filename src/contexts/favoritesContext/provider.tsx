@@ -14,6 +14,10 @@ export interface FavoriteGames {
 }
 
 const FAVORITES_INITIAL_STATE = [] as FavoriteGames[];
+const GET_FAVORITE_GAMES_ERROR_MESSAGE =
+  'Algo inesperado ocorreu, tente recarregar a página';
+const ADD_FAVORITE_GAME_ERROR_MESSAGE =
+  'Não foi possível adicionar aos favoritos, tente novamente mais tarde';
 
 export function FavoritesProvider({ children }: FavoritesProviderProps) {
   const [favoritesGameIdArray, setFavorites] = useState<FavoriteGames[]>(
@@ -40,9 +44,8 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
               setFavorites(Object.values(snapshot.val()));
             }
           })
-          .catch((error) => {
-            setError('Algo inesperado ocorreu');
-            console.error(error);
+          .catch(() => {
+            setError(GET_FAVORITE_GAMES_ERROR_MESSAGE);
           });
       }
       if (isAuthenticated) fetchFavoriteGames();
@@ -58,9 +61,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
         setFavorites((favorites) => [...favorites, { gameId }]);
       })
       .catch(() => {
-        setError(
-          'Não foi possível adicionar aos favoritos, tente novamente mais tarde'
-        );
+        setError(ADD_FAVORITE_GAME_ERROR_MESSAGE);
       });
   }
 
