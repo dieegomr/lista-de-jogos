@@ -13,6 +13,8 @@ Este é um projeto React desenvolvido como parte do desafio técnico para um car
 <img src="mobile.png" alt="project screenshot" width="250" height="400">
 <img src="tablet.png" alt="project screenshot" width="500" height="400">
 </div>
+
+<h3>Versão pc</h3>
 <img src="pc.png" alt="project screenshot" width="800" height="400">
 
 <h2>Requisitos Funcionais:</h2>
@@ -43,8 +45,6 @@ Este é um projeto React desenvolvido como parte do desafio técnico para um car
 <li>Escolher um item para aplicar uma animação com CSS, pode ser ao favoritar, ou avaliar, ou quando os itens surgirem ✅</li>
 <li>Publicar seu projeto online para testarmos (na mesma url de antes) ✅</li>
 </ul>
-
-<h3>Versão pc</h3>
 
 <h3 >Como rodar esta aplicação no seu computador?</h3>
 
