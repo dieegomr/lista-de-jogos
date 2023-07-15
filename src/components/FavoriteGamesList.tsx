@@ -34,7 +34,7 @@ export default function FavoriteGamesList() {
       <ul className={styles.list}>
         {gamesToRender.map((game) => (
           <GameItem game={game} key={game.id}>
-            <a>
+            <a href={game.game_url} target="_blank">
               Play Now
               <span className={styles.icon}>
                 <LuGamepad2 size={17} />
