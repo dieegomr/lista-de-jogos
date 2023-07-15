@@ -40,9 +40,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return () => unsubscribe();
   }, []);
 
-  console.log('user', user);
-  console.log('authenticated', isAuthenticated);
-
   return (
     <AuthContext.Provider
       value={{

@@ -3,7 +3,6 @@ import styles from './AuthForm.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import FormInput from './FormInput';
 import ActionButton from './ActionButton';
-import { MouseEventHandler } from 'react';
 
 interface AuthFormProps {
   isLoginMode: boolean;

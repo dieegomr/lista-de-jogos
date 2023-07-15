@@ -37,8 +37,6 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
           .then((snapshot) => {
             if (snapshot.exists()) {
               setFavorites(Object.values(snapshot.val()));
-            } else {
-              console.log('No data available');
             }
           })
           .catch((error) => {

@@ -29,8 +29,6 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
           .then((snapshot) => {
             if (snapshot.exists()) {
               setRatedGames(Object.values(snapshot.val()));
-            } else {
-              console.log('No data available');
             }
           })
           .catch((error) => {
