@@ -10,7 +10,7 @@ export function useFavoriteGameIconState(
   const [vanishAnimation, setVanishAnimation] = useState(false);
   const [shakeAnimation, setShakeAnimation] = useState(false);
 
-  const { addFavoriteGame, removeFavoriteGame, isGameFavorite } =
+  const { addFavoriteGame, removeFavoriteGame, isGameFavorite, error } =
     useFavorites();
 
   const isFavorite = isGameFavorite(gameId);
@@ -44,5 +44,6 @@ export function useFavoriteGameIconState(
     authenticationAlert,
     setAuthenticationAlert,
     handleClick,
+    error,
   };
 }

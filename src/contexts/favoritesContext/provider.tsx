@@ -32,6 +32,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
 
   useEffect(
     function () {
+      setError('');
       async function fetchFavoriteGames() {
         get(child(databaseRef, `favorites/${user?.uid}`))
           .then((snapshot) => {
@@ -52,9 +53,15 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
   async function addFavoriteGame(gameId: number) {
     set(ref(database, `favorites/${user?.uid}/${gameId}`), {
       gameId: gameId,
-    });
-
-    setFavorites((favorites) => [...favorites, { gameId }]);
+    })
+      .then(() => {
+        setFavorites((favorites) => [...favorites, { gameId }]);
+      })
+      .catch(() => {
+        setError(
+          'Não foi possível adicionar aos favoritos, tente novamente mais tarde'
+        );
+      });
   }
 
   async function removeFavoriteGame(id: number) {

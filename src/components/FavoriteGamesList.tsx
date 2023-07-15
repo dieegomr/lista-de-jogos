@@ -10,7 +10,7 @@ import { useFilter } from '../hooks/useFilter';
 import { useSort } from '../hooks/useSort';
 
 export default function FavoriteGamesList() {
-  const { error, favoriteGamesObjArray } = useFavorites();
+  const { favoriteGamesObjArray } = useFavorites();
 
   const { searchedGames } = useSearch(favoriteGamesObjArray);
   const { filteredGames } = useFilter(searchedGames);
@@ -23,14 +23,12 @@ export default function FavoriteGamesList() {
 
   return (
     <div className={styles.favoriteGamesList}>
-      {!error && (
-        <div className={styles.header}>
-          <h1>Favorites</h1>
-          <div className={styles.btn}>
-            <SortBy />
-          </div>
+      <div className={styles.header}>
+        <h1>Favorites</h1>
+        <div className={styles.btn}>
+          <SortBy />
         </div>
-      )}
+      </div>
       <ul className={styles.list}>
         {gamesToRender.map((game) => (
           <GameItem game={game} key={game.id}>

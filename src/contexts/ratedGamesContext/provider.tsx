@@ -19,11 +19,13 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
   const [ratedGames, setRatedGames] = useState<RatedGameType[]>(
     RATED_GAMES_INITIAL_STATE
   );
+  const [error, setError] = useState('');
 
   const { user, isAuthenticated } = useAuth();
 
   useEffect(
     function () {
+      setError('');
       async function fetchRatedGames() {
         get(child(databaseRef, `rated_games/${user?.uid}`))
           .then((snapshot) => {
@@ -48,21 +50,35 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
       set(ref(database, `rated_games/${user?.uid}/${ratedGame.gameId}`), {
         gameId: ratedGame.gameId,
         rate: ratedGame.rate,
-      });
-      setRatedGames((ratedGames) => [...ratedGames, ratedGame]);
+      })
+        .then(() => {
+          setRatedGames((ratedGames) => [...ratedGames, ratedGame]);
+        })
+        .catch(() => {
+          setError(
+            'Não foi possível dar a nota para esse jogo. Tente novamente mais tarde'
+          );
+        });
     } else {
       update(
         ref(database, `rated_games/${user?.uid}/${ratedGame.gameId}`),
         ratedGame
-      );
-      const updatedRatedMovie = ratedGames.map((game) => {
-        if (game.gameId === ratedGame.gameId) {
-          return { ...game, rate: ratedGame.rate };
-        } else {
-          return game;
-        }
-      });
-      setRatedGames(updatedRatedMovie);
+      )
+        .then(() => {
+          const updatedRatedMovie = ratedGames.map((game) => {
+            if (game.gameId === ratedGame.gameId) {
+              return { ...game, rate: ratedGame.rate };
+            } else {
+              return game;
+            }
+          });
+          setRatedGames(updatedRatedMovie);
+        })
+        .catch(() => {
+          setError(
+            'Não foi possível dar a nota para esse jogo. Tente novamente mais tarde'
+          );
+        });
     }
   }
 
@@ -77,7 +93,7 @@ export function RatedGamesProvider({ children }: RatedGamesProviderProps) {
 
   return (
     <FavoritesContext.Provider
-      value={{ ratedGames, rateGame, getRate, resetRatedGames }}
+      value={{ ratedGames, rateGame, getRate, resetRatedGames, error }}
     >
       {children}
     </FavoritesContext.Provider>
