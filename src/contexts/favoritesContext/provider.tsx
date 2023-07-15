@@ -3,24 +3,32 @@ import { FavoritesContext } from '.';
 import { child, get, ref, remove, set } from 'firebase/database';
 import { database, databaseRef } from '../../firebase';
 import { useAuth } from '../authContext/hook';
+import { useGames } from '../gameContext/hook';
 
 interface FavoritesProviderProps {
   children: ReactNode;
 }
 
-interface FavoriteGames {
+export interface FavoriteGames {
   gameId: number;
 }
 
 const FAVORITES_INITIAL_STATE = [] as FavoriteGames[];
 
 export function FavoritesProvider({ children }: FavoritesProviderProps) {
-  const [favorites, setFavorites] = useState<FavoriteGames[]>(
+  const [favoritesGameIdArray, setFavorites] = useState<FavoriteGames[]>(
     FAVORITES_INITIAL_STATE
   );
   const [error, setError] = useState('');
+  const { games } = useGames();
 
   const { user, isAuthenticated } = useAuth();
+
+  const favoriteGamesObjArray = games.filter((game) => {
+    return favoritesGameIdArray
+      .map((favoriteGame) => favoriteGame.gameId)
+      .includes(game.id);
+  });
 
   useEffect(
     function () {
@@ -43,8 +51,6 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
     [isAuthenticated, user?.uid]
   );
 
-  console.log(favorites);
-
   async function addFavoriteGame(gameId: number) {
     set(ref(database, `favorites/${user?.uid}/${gameId}`), {
       gameId: gameId,
@@ -65,7 +71,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
   }
 
   function isGameFavorite(gameId: number) {
-    const foundGame = favorites.find(
+    const foundGame = favoritesGameIdArray.find(
       (favoriteGame) => favoriteGame.gameId === gameId
     );
     return !!foundGame;
@@ -74,7 +80,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
   return (
     <FavoritesContext.Provider
       value={{
-        favorites,
+        favoriteGamesObjArray,
         addFavoriteGame,
         removeFavoriteGame,
         resetFavoriteGames,

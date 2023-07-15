@@ -1,7 +1,8 @@
 import { createContext } from 'react';
+import { Game } from '../../types/Game';
 
 interface FavoritesContextType {
-  favorites: number[];
+  favoriteGamesObjArray: Game[];
   addFavoriteGame: (id: number) => void;
   removeFavoriteGame: (id: number) => void;
   resetFavoriteGames: () => void;
