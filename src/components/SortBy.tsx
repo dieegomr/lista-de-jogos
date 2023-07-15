@@ -1,4 +1,5 @@
 import { BiSortDown, BiSortUp, BiSolidStar } from 'react-icons/bi';
+import { MdFilterListOff } from 'react-icons/md';
 
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext/hook';
@@ -27,19 +28,23 @@ export default function SortBy() {
   return (
     <>
       {isAuthenticated && !sortBy && (
-        <ActionButton onClick={handleNoSort}>No Sorting</ActionButton>
+        <ActionButton onClick={handleNoSort}>
+          Ordenar <MdFilterListOff size={20} />
+        </ActionButton>
       )}
       {isAuthenticated && sortBy === 'rate-no' && (
-        <ActionButton onClick={handleNoSort}>No Sorting</ActionButton>
+        <ActionButton onClick={handleNoSort}>
+          Ordenar <MdFilterListOff size={20} />
+        </ActionButton>
       )}
       {isAuthenticated && sortBy === 'rate-asc' && (
         <ActionButton onClick={handleSortAsc}>
-          Sort By <BiSolidStar size={17} /> <BiSortUp size={20} />
+          Ordenar por <BiSolidStar size={17} /> <BiSortUp size={20} />
         </ActionButton>
       )}
       {isAuthenticated && sortBy === 'rate-desc' && (
         <ActionButton onClick={handleSortDesc}>
-          Sort By <BiSolidStar size={17} /> <BiSortDown size={20} />
+          Ordenar por <BiSolidStar size={17} /> <BiSortDown size={20} />
         </ActionButton>
       )}
     </>
